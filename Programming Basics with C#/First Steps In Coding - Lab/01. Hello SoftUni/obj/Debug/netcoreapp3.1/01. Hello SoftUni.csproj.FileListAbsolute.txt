@@ -1,0 +1,13 @@
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\bin\Debug\netcoreapp3.1\01. Hello SoftUni.exe
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\bin\Debug\netcoreapp3.1\01. Hello SoftUni.deps.json
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\bin\Debug\netcoreapp3.1\01. Hello SoftUni.runtimeconfig.json
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\bin\Debug\netcoreapp3.1\01. Hello SoftUni.runtimeconfig.dev.json
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\bin\Debug\netcoreapp3.1\01. Hello SoftUni.dll
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\bin\Debug\netcoreapp3.1\01. Hello SoftUni.pdb
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\obj\Debug\netcoreapp3.1\01. Hello SoftUni.csprojAssemblyReference.cache
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\obj\Debug\netcoreapp3.1\01. Hello SoftUni.AssemblyInfoInputs.cache
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\obj\Debug\netcoreapp3.1\01. Hello SoftUni.AssemblyInfo.cs
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\obj\Debug\netcoreapp3.1\01. Hello SoftUni.csproj.CoreCompileInputs.cache
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\obj\Debug\netcoreapp3.1\01. Hello SoftUni.dll
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\obj\Debug\netcoreapp3.1\01. Hello SoftUni.pdb
+C:\Users\vtview30\source\repos\First Steps In Coding - Lab\01. Hello SoftUni\obj\Debug\netcoreapp3.1\01. Hello SoftUni.genruntimeconfig.cache
