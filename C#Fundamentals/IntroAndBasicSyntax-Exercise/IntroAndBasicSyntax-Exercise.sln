@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_Ages", "01_Ages\01_Ages.csproj", "{B91CE8B7-3AD4-4697-B1C6-C82DE4F20BC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_Ages", "01_Ages\01_Ages.csproj", "{B91CE8B7-3AD4-4697-B1C6-C82DE4F20BC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_Division", "02_Division\02_Division.csproj", "{D94A3855-4DEA-4C04-B986-67D33C78F8B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02_Division", "02_Division\02_Division.csproj", "{D94A3855-4DEA-4C04-B986-67D33C78F8B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_Vacation", "03_Vacation\03_Vacation.csproj", "{3ACA1A84-E383-4A81-B03A-13EFDD456730}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D94A3855-4DEA-4C04-B986-67D33C78F8B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D94A3855-4DEA-4C04-B986-67D33C78F8B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D94A3855-4DEA-4C04-B986-67D33C78F8B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ACA1A84-E383-4A81-B03A-13EFDD456730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ACA1A84-E383-4A81-B03A-13EFDD456730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ACA1A84-E383-4A81-B03A-13EFDD456730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ACA1A84-E383-4A81-B03A-13EFDD456730}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
