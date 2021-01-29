@@ -3,11 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DayOfWeek", "DayOfWeek\DayOfWeek.csproj", "{83B80BDC-FA31-40BA-836B-EBB466E221A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DayOfWeek", "DayOfWeek\DayOfWeek.csproj", "{83B80BDC-FA31-40BA-836B-EBB466E221A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintNumbersInReverseOrder", "PrintNumbersInReverseOrder\PrintNumbersInReverseOrder.csproj", "{7BC8582B-0523-4EBE-AF98-8A7C085FE7FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrintNumbersInReverseOrder", "PrintNumbersInReverseOrder\PrintNumbersInReverseOrder.csproj", "{7BC8582B-0523-4EBE-AF98-8A7C085FE7FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoundingNumbers", "RoundingNumbers\RoundingNumbers.csproj", "{E44FB237-B1C8-4C8F-953B-02029AF48A11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoundingNumbers", "RoundingNumbers\RoundingNumbers.csproj", "{E44FB237-B1C8-4C8F-953B-02029AF48A11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseArrayOfStrings", "ReverseArrayOfStrings\ReverseArrayOfStrings.csproj", "{4515BFFF-DA2F-49F8-B7DD-BB8F1E3087A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SumEvenNumbers", "SumEvenNumbers\SumEvenNumbers.csproj", "{59E155A3-B4AA-46D4-B126-507CBFC5048A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvenAndOddSubtraction", "EvenAndOddSubtraction\EvenAndOddSubtraction.csproj", "{58C880EA-2708-4A12-8A75-4BC929310C73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqualArrays", "EqualArrays\EqualArrays.csproj", "{59272F71-C3B3-4886-A4AF-2B258AF3C3AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CondenseArrayToNumber", "CondenseArrayToNumber\CondenseArrayToNumber.csproj", "{B423D199-888D-41A4-8F0A-9878E579618D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +37,26 @@ Global
 		{E44FB237-B1C8-4C8F-953B-02029AF48A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E44FB237-B1C8-4C8F-953B-02029AF48A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E44FB237-B1C8-4C8F-953B-02029AF48A11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4515BFFF-DA2F-49F8-B7DD-BB8F1E3087A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4515BFFF-DA2F-49F8-B7DD-BB8F1E3087A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4515BFFF-DA2F-49F8-B7DD-BB8F1E3087A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4515BFFF-DA2F-49F8-B7DD-BB8F1E3087A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59E155A3-B4AA-46D4-B126-507CBFC5048A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E155A3-B4AA-46D4-B126-507CBFC5048A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E155A3-B4AA-46D4-B126-507CBFC5048A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E155A3-B4AA-46D4-B126-507CBFC5048A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58C880EA-2708-4A12-8A75-4BC929310C73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58C880EA-2708-4A12-8A75-4BC929310C73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58C880EA-2708-4A12-8A75-4BC929310C73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58C880EA-2708-4A12-8A75-4BC929310C73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59272F71-C3B3-4886-A4AF-2B258AF3C3AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59272F71-C3B3-4886-A4AF-2B258AF3C3AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59272F71-C3B3-4886-A4AF-2B258AF3C3AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59272F71-C3B3-4886-A4AF-2B258AF3C3AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B423D199-888D-41A4-8F0A-9878E579618D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B423D199-888D-41A4-8F0A-9878E579618D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B423D199-888D-41A4-8F0A-9878E579618D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B423D199-888D-41A4-8F0A-9878E579618D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

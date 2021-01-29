@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace RoundingNumbers
 {
@@ -6,11 +7,16 @@ namespace RoundingNumbers
     {
         static void Main()
         {
-            string strNumbers = Console.ReadLine();
-            decimal[] numbers = Array.ConvertAll(strNumbers.Split(" "), arrTemp => Convert.ToDecimal(arrTemp));
+            double[] numbers = Console.ReadLine().Split(' ').Select(double.Parse).ToArray();
+            int[] numInt = new int[numbers.Length];
+            for (int i = 0; i < numInt.Length; i++)
+            {
+                numInt[i] = (int)Math.Round(numbers[i], MidpointRounding.AwayFromZero);
+            }
+            
             for (int i = 0; i < numbers.Length; i++)
             {
-                Console.WriteLine($"{numbers[i]} => {Math.Round(numbers[i],MidpointRounding.AwayFromZero)}");
+                Console.WriteLine($"{numbers[i]} => {numInt[i]}");
             }
 
         }
