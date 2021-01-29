@@ -11,6 +11,10 @@ namespace RoundingNumbers
             int[] numInt = new int[numbers.Length];
             for (int i = 0; i < numInt.Length; i++)
             {
+                if (numbers[i] == 0)
+                {
+                    numbers[i] = 0;
+                }
                 numInt[i] = (int)Math.Round(numbers[i], MidpointRounding.AwayFromZero);
             }
             
