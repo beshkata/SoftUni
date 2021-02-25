@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BonusScoringSystem", "BonusScoringSystem\BonusScoringSystem.csproj", "{A541F4B0-DAE1-4ECC-BB63-01CE852226DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BonusScoringSystem", "BonusScoringSystem\BonusScoringSystem.csproj", "{A541F4B0-DAE1-4ECC-BB63-01CE852226DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuOnline", "MuOnline\MuOnline.csproj", "{984DA76E-A893-4477-AD9A-CDF8E18BF25C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory", "Inventory\Inventory.csproj", "{726175D9-8C1B-47EE-8050-8538AEA720EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NationalCourt", "NationalCourt\NationalCourt.csproj", "{0FE97774-D61D-4AED-ACF1-EA5D688D8F75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList", "ShoppingList\ShoppingList.csproj", "{1A3D6E31-4174-44F2-AC27-4294531AC57D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeartDelivery", "HeartDelivery\HeartDelivery.csproj", "{931292EB-3A88-44A3-AFCD-5CD43F15C479}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{A541F4B0-DAE1-4ECC-BB63-01CE852226DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A541F4B0-DAE1-4ECC-BB63-01CE852226DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A541F4B0-DAE1-4ECC-BB63-01CE852226DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{984DA76E-A893-4477-AD9A-CDF8E18BF25C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{984DA76E-A893-4477-AD9A-CDF8E18BF25C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{984DA76E-A893-4477-AD9A-CDF8E18BF25C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{984DA76E-A893-4477-AD9A-CDF8E18BF25C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{726175D9-8C1B-47EE-8050-8538AEA720EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{726175D9-8C1B-47EE-8050-8538AEA720EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{726175D9-8C1B-47EE-8050-8538AEA720EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{726175D9-8C1B-47EE-8050-8538AEA720EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FE97774-D61D-4AED-ACF1-EA5D688D8F75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE97774-D61D-4AED-ACF1-EA5D688D8F75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE97774-D61D-4AED-ACF1-EA5D688D8F75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE97774-D61D-4AED-ACF1-EA5D688D8F75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A3D6E31-4174-44F2-AC27-4294531AC57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3D6E31-4174-44F2-AC27-4294531AC57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3D6E31-4174-44F2-AC27-4294531AC57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3D6E31-4174-44F2-AC27-4294531AC57D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{931292EB-3A88-44A3-AFCD-5CD43F15C479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{931292EB-3A88-44A3-AFCD-5CD43F15C479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{931292EB-3A88-44A3-AFCD-5CD43F15C479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{931292EB-3A88-44A3-AFCD-5CD43F15C479}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
