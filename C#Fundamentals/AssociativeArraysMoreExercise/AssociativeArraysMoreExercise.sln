@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ranking", "Ranking\Ranking.csproj", "{671CDC81-F6CE-4E23-B720-AF3BD1870D61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ranking", "Ranking\Ranking.csproj", "{671CDC81-F6CE-4E23-B720-AF3BD1870D61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Judge", "Judge\Judge.csproj", "{0B2D5096-DE4D-42C7-A549-575B2340F26F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Judge", "Judge\Judge.csproj", "{0B2D5096-DE4D-42C7-A549-575B2340F26F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOBAChallenger", "MOBAChallenger\MOBAChallenger.csproj", "{0109827C-50D4-4D6F-AE5B-672860D951FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snowwhite", "Snowwhite\Snowwhite.csproj", "{3B080E33-6EC0-4956-AD57-83670DF1D8E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragonArmy", "DragonArmy\DragonArmy.csproj", "{FC371AFB-D101-4967-9597-81CDB601A8E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{0B2D5096-DE4D-42C7-A549-575B2340F26F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B2D5096-DE4D-42C7-A549-575B2340F26F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B2D5096-DE4D-42C7-A549-575B2340F26F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0109827C-50D4-4D6F-AE5B-672860D951FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0109827C-50D4-4D6F-AE5B-672860D951FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0109827C-50D4-4D6F-AE5B-672860D951FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0109827C-50D4-4D6F-AE5B-672860D951FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B080E33-6EC0-4956-AD57-83670DF1D8E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B080E33-6EC0-4956-AD57-83670DF1D8E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B080E33-6EC0-4956-AD57-83670DF1D8E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B080E33-6EC0-4956-AD57-83670DF1D8E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC371AFB-D101-4967-9597-81CDB601A8E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC371AFB-D101-4967-9597-81CDB601A8E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC371AFB-D101-4967-9597-81CDB601A8E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC371AFB-D101-4967-9597-81CDB601A8E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
