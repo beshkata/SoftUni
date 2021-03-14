@@ -3,21 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountCharsInString", "CountCharsInString\CountCharsInString.csproj", "{6FC02CEB-4BAA-46C9-A46A-66427F596B0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CountCharsInString", "CountCharsInString\CountCharsInString.csproj", "{6FC02CEB-4BAA-46C9-A46A-66427F596B0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinerTask", "MinerTask\MinerTask.csproj", "{BEE4BC91-B766-4F42-80EF-850FD549E60E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinerTask", "MinerTask\MinerTask.csproj", "{BEE4BC91-B766-4F42-80EF-850FD549E60E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendaryFarming", "LegendaryFarming\LegendaryFarming.csproj", "{894EBCB3-AE8D-47B2-9728-929FD0E85274}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegendaryFarming", "LegendaryFarming\LegendaryFarming.csproj", "{894EBCB3-AE8D-47B2-9728-929FD0E85274}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders", "Orders\Orders.csproj", "{60B9EFD0-FAC3-45B3-92ED-F9EDB65AE0BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders", "Orders\Orders.csproj", "{60B9EFD0-FAC3-45B3-92ED-F9EDB65AE0BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftUniParking", "SoftUniParking\SoftUniParking.csproj", "{443B39B8-B8AB-4E77-8E1C-7CDEB114E70A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftUniParking", "SoftUniParking\SoftUniParking.csproj", "{443B39B8-B8AB-4E77-8E1C-7CDEB114E70A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courses", "Courses\Courses.csproj", "{4136F9E8-02F2-465B-B993-2C1D5DFA2BD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Courses", "Courses\Courses.csproj", "{4136F9E8-02F2-465B-B993-2C1D5DFA2BD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentAcademy", "StudentAcademy\StudentAcademy.csproj", "{A356DE59-DCCA-481B-9611-F1643FA2D57F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentAcademy", "StudentAcademy\StudentAcademy.csproj", "{A356DE59-DCCA-481B-9611-F1643FA2D57F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyUsers", "CompanyUsers\CompanyUsers.csproj", "{2A3C9D7F-DCA1-46D7-AFBF-8DB7DCFC815B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyUsers", "CompanyUsers\CompanyUsers.csproj", "{2A3C9D7F-DCA1-46D7-AFBF-8DB7DCFC815B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForceBook", "ForceBook\ForceBook.csproj", "{6677E2EB-88D2-4918-803F-D4E89C5C0124}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftUniExamResults", "SoftUniExamResults\SoftUniExamResults.csproj", "{B7F1D2B5-7113-4694-9581-14412D18D599}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,14 @@ Global
 		{2A3C9D7F-DCA1-46D7-AFBF-8DB7DCFC815B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A3C9D7F-DCA1-46D7-AFBF-8DB7DCFC815B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A3C9D7F-DCA1-46D7-AFBF-8DB7DCFC815B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6677E2EB-88D2-4918-803F-D4E89C5C0124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6677E2EB-88D2-4918-803F-D4E89C5C0124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6677E2EB-88D2-4918-803F-D4E89C5C0124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6677E2EB-88D2-4918-803F-D4E89C5C0124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F1D2B5-7113-4694-9581-14412D18D599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F1D2B5-7113-4694-9581-14412D18D599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F1D2B5-7113-4694-9581-14412D18D599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F1D2B5-7113-4694-9581-14412D18D599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
