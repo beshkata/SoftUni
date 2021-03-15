@@ -5,13 +5,19 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidUsernames", "ValidUsernames\ValidUsernames.csproj", "{BA6AFD26-F34E-4E44-9F9E-A93B66D9F62C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterMultiplier", "CharacterMultiplier\CharacterMultiplier.csproj", "{B346D8FF-482D-4C41-9877-CBC3E932F416}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CharacterMultiplier", "CharacterMultiplier\CharacterMultiplier.csproj", "{B346D8FF-482D-4C41-9877-CBC3E932F416}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtractFile", "ExtractFile\ExtractFile.csproj", "{64502125-6465-4E2F-81D4-0131C2604D63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtractFile", "ExtractFile\ExtractFile.csproj", "{64502125-6465-4E2F-81D4-0131C2604D63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaesarCipher", "CaesarCipher\CaesarCipher.csproj", "{C896A4BE-C19F-4FC3-951E-32059398CFF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaesarCipher", "CaesarCipher\CaesarCipher.csproj", "{C896A4BE-C19F-4FC3-951E-32059398CFF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiplyBigNumber", "MultiplyBigNumber\MultiplyBigNumber.csproj", "{A4A9092D-4D61-4B50-9F0C-374FFA950585}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiplyBigNumber", "MultiplyBigNumber\MultiplyBigNumber.csproj", "{A4A9092D-4D61-4B50-9F0C-374FFA950585}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceRepeatingChars", "ReplaceRepeatingChars\ReplaceRepeatingChars.csproj", "{8CE6F3AB-3B6E-46FF-95AC-CAE49D6EB4C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExplosion", "StringExplosion\StringExplosion.csproj", "{70243B4D-33E3-4569-B5A5-FD69991898C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LettersChangeNumbers", "LettersChangeNumbers\LettersChangeNumbers.csproj", "{E9A6F08E-073E-4924-8142-2C8473EF84DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{A4A9092D-4D61-4B50-9F0C-374FFA950585}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4A9092D-4D61-4B50-9F0C-374FFA950585}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4A9092D-4D61-4B50-9F0C-374FFA950585}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE6F3AB-3B6E-46FF-95AC-CAE49D6EB4C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE6F3AB-3B6E-46FF-95AC-CAE49D6EB4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE6F3AB-3B6E-46FF-95AC-CAE49D6EB4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE6F3AB-3B6E-46FF-95AC-CAE49D6EB4C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70243B4D-33E3-4569-B5A5-FD69991898C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70243B4D-33E3-4569-B5A5-FD69991898C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70243B4D-33E3-4569-B5A5-FD69991898C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70243B4D-33E3-4569-B5A5-FD69991898C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9A6F08E-073E-4924-8142-2C8473EF84DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A6F08E-073E-4924-8142-2C8473EF84DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A6F08E-073E-4924-8142-2C8473EF84DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A6F08E-073E-4924-8142-2C8473EF84DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

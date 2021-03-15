@@ -9,6 +9,11 @@ namespace MultiplyBigNumber
         {
             string number = Console.ReadLine();
             int multyplier = int.Parse(Console.ReadLine());
+            if (multyplier == 0)
+            {
+                Console.WriteLine(0);
+                return;
+            }
 
             List<string> result = new List<string>();
             int remainder = 0;
