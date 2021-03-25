@@ -6,15 +6,11 @@ function scholarship([arg1, arg2, arg3]){
     let canGetSocialScholarship = false;
     let canGetExellentScholarship = false;
  
-    if (averageGrade < 4.51) {
-        console.log("You cannot get a scholarship!");
-    }else{
-        if (averageGrade > 4.51 && income < minSalary) {
-            canGetSocialScholarship = true;
-        }
-        if (averageGrade >= 5.5) {
-            canGetExellentScholarship = true;
-        }
+    if (averageGrade > 4.50 && income < minSalary) {
+        canGetSocialScholarship = true;
+    }
+    if (averageGrade >= 5.5) {
+        canGetExellentScholarship = true;
     }
 
     let socialScholarship = Math.floor(minSalary * 0.35);
