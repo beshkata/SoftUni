@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskOne", "TaskOne\TaskOne.csproj", "{A81D2EB5-D02F-4D6A-8D5D-AC57627CDCA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTwo", "TaskTwo\TaskTwo.csproj", "{39F2FCB8-07BF-4CBB-A6C7-2B14ABA403CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskThree", "TaskThree\TaskThree.csproj", "{5DDE5152-4FC5-4055-BA2A-1DAFE375259B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A81D2EB5-D02F-4D6A-8D5D-AC57627CDCA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A81D2EB5-D02F-4D6A-8D5D-AC57627CDCA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A81D2EB5-D02F-4D6A-8D5D-AC57627CDCA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A81D2EB5-D02F-4D6A-8D5D-AC57627CDCA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39F2FCB8-07BF-4CBB-A6C7-2B14ABA403CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39F2FCB8-07BF-4CBB-A6C7-2B14ABA403CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39F2FCB8-07BF-4CBB-A6C7-2B14ABA403CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39F2FCB8-07BF-4CBB-A6C7-2B14ABA403CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DDE5152-4FC5-4055-BA2A-1DAFE375259B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DDE5152-4FC5-4055-BA2A-1DAFE375259B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DDE5152-4FC5-4055-BA2A-1DAFE375259B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DDE5152-4FC5-4055-BA2A-1DAFE375259B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B94F091-2719-41EF-B77C-74A94FBE2AFE}
+	EndGlobalSection
+EndGlobal
