@@ -12,9 +12,8 @@ namespace SimpleTextEditor
             int n = int.Parse(Console.ReadLine());
 
             //string text = "";
-            StringBuilder text = new StringBuilder();
-            Stack<StringBuilder> undo = new Stack<StringBuilder>();
-            StringBuilder savedText = new StringBuilder();
+            string text = "";
+            Stack<string> undo = new Stack<string>();
             undo.Push(text);
 
 
@@ -26,15 +25,17 @@ namespace SimpleTextEditor
 
                 if (command == "1")
                 {
-                    text.Append(tokens[1]);
-                    savedText = text;
-                    undo.Push(savedText);
+                    undo.Push(text);
+                    text = text + tokens[1];
+                    
+                    
                 }
                 else if (command == "2")
                 {
                     int lenght = int.Parse(tokens[1]);
-                    text.Remove(text.Length - lenght, lenght);
                     undo.Push(text);
+                    text = text.Remove(text.Length - lenght, lenght);
+                    
                 }
                 else if (command == "3")
                 {
