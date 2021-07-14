@@ -11,8 +11,15 @@ namespace MilitaryElite.Models
             LastName = lastName;
         }
 
-        public string Id { get; private set; }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
+        public string Id { get; }
+
+        public string FirstName { get; }
+
+        public string LastName { get; }
+
+        public override string ToString()
+        {
+            return $"Name: {FirstName} {LastName} Id: {Id}";
+        }
     }
 }

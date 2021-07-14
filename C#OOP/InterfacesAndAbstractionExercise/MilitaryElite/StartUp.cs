@@ -1,4 +1,5 @@
 ﻿using MilitaryElite.Contracts;
+using MilitaryElite.Enums;
 using MilitaryElite.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace MilitaryElite
 {
     public class StartUp
     {
-        static void Main(string[] args)
+        static void Main()
         {
             List<ISoldier> soldiers = new List<ISoldier>();
 
@@ -21,94 +22,90 @@ namespace MilitaryElite
                     break;
                 }
 
-                string[] tokens = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                string[] tokens = input.Split();
 
-                string command = tokens[0];
+                string type = tokens[0];
                 string id = tokens[1];
                 string firstName = tokens[2];
                 string lastName = tokens[3];
 
-                if (command == "Private")
+                if (type == nameof(Private))
                 {
                     decimal salary = decimal.Parse(tokens[4]);
-                    ISoldier soldier = new Private(id, firstName, lastName, salary);
-                    soldiers.Add(soldier);
+                    Private @private = new Private(id, firstName, lastName, salary);
+                    soldiers.Add(@private);
                 }
-                else if (command == "LieutenantGeneral")
+                else if (type == nameof(LieutenantGeneral))
                 {
                     decimal salary = decimal.Parse(tokens[4]);
-                    List<IPrivate> privates = new List<IPrivate>();
+                    LieutenantGeneral lieutenantGeneral = new LieutenantGeneral(id, firstName, lastName, salary);
                     for (int i = 5; i < tokens.Length; i++)
                     {
-                        string currentId = tokens[i];
-                        IPrivate @private = (IPrivate)soldiers.FirstOrDefault(x => x.Id == currentId);
-                        if (@private == null)
+                        string privateId = tokens[i];
+                        IPrivate @private = (IPrivate)soldiers.FirstOrDefault(x => x.Id == privateId);
+                        if (@private != null)
                         {
-                            continue;
+                            lieutenantGeneral.AddPrivate(@private);
                         }
-                        privates.Add(@private);
                     }
-                    ISoldier lieutenantGeneral = new LieutenantGeneral(id, firstName, lastName, salary, privates);
                     soldiers.Add(lieutenantGeneral);
                 }
-                else if (command == "Engineer")
+                else if (type == nameof(Engineer))
                 {
                     decimal salary = decimal.Parse(tokens[4]);
-                    string corps = tokens[5];
-                    if (corps != "Airforces" && corps != "Marines")
+                    bool isCorpsValid = Enum.TryParse(tokens[5], out Corps corps);
+
+                    if(!isCorpsValid)
                     {
                         continue;
                     }
-                    List<IRepair> repairs = new List<IRepair>();
+                    Engineer engineer = new Engineer(id, firstName, lastName, salary, corps);
 
                     for (int i = 6; i < tokens.Length; i+=2)
                     {
                         string partName = tokens[i];
                         int hoursWorked = int.Parse(tokens[i + 1]);
-                        IRepair repair = new Repair(partName, hoursWorked);
-                        repairs.Add(repair);
+                        Repair repair = new Repair(partName, hoursWorked);
+                        engineer.AddRepair(repair);
                     }
-                    ISoldier engineer = new Engineer(id, firstName, lastName, salary, corps, repairs);
                     soldiers.Add(engineer);
                 }
-                else if (command == "Commando")
+                else if (type == nameof(Commando))
                 {
                     decimal salary = decimal.Parse(tokens[4]);
-                    string corps = tokens[5];
-                    if (corps != "Airforces" && corps != "Marines")
+                    bool isCorpsValid = Enum.TryParse(tokens[5], out Corps corps);
+
+                    if (!isCorpsValid)
                     {
                         continue;
                     }
-                    List<IMission> missions = new List<IMission>();
+                    Commando commando = new Commando(id, firstName, lastName, salary, corps);
 
                     for (int i = 6; i < tokens.Length; i += 2)
                     {
                         string codeName = tokens[i];
-                        string state = tokens[i + 1];
-                        if (state != "inProgress" && state != "Finished")
+                        bool isMissionStateValid = Enum.TryParse(tokens[i + 1], out MissionState state);
+                        if (!isMissionStateValid)
                         {
                             continue;
                         }
-                        IMission mission = new Mission(codeName, state);
-                        missions.Add(mission);
+                        Mission mission = new Mission(codeName, state);
+                        commando.AddMission(mission);
                     }
-                    ISoldier commando = new Commando(id, firstName, lastName, salary, corps, missions);
                     soldiers.Add(commando);
 
                 }
-                else if (command == "Spy")
+                else if (type == nameof(Spy))
                 {
                     int codeNumber = int.Parse(tokens[4]);
-
-                    ISoldier spy = new Spy(id, firstName, lastName, codeNumber);
+                    Spy spy = new Spy(id, firstName, lastName, codeNumber);
                     soldiers.Add(spy);
                 }
-
             }
 
             foreach (var soldier in soldiers)
             {
-                Console.WriteLine(soldier.ToString()); 
+                Console.WriteLine(soldier.ToString());
             }
         }
     }

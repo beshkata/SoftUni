@@ -1,36 +1,23 @@
 ﻿using System;
 
 using MilitaryElite.Contracts;
-
+using MilitaryElite.Enums;
 
 namespace MilitaryElite.Models
 {
     public abstract class SpecialisedSoldier : Private, ISpecialisedSoldier
     {
-        private string corps;
-        public SpecialisedSoldier(string id, string firstName, string lastName, decimal salary, string corps)
+        protected SpecialisedSoldier(string id, string firstName, string lastName, decimal salary, Corps corps)
             : base(id, firstName, lastName, salary)
         {
             Corps = corps;
         }
 
-        public string Corps 
-        {
-            get =>this.corps;
-            private set
-            {
-                if (value != "Airforces" && value != "Marines")
-                {
-                    throw new ArgumentException();
-                }
-                corps = value;
-            }
-            
-        }
+        public Corps Corps { get; }
 
         public override string ToString()
         {
-            return base.ToString();
+            return base.ToString() + Environment.NewLine + $"Corps: {Corps}";
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using MilitaryElite.Contracts;
+using MilitaryElite.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,47 +8,30 @@ namespace MilitaryElite.Models
 {
     public class Engineer : SpecialisedSoldier, IEngineer
     {
-        public Engineer(string id,
-            string firstName,
-            string lastName,
-            decimal salary,
-            string corps,
-            ICollection<IRepair> repairs)
+        private List<IRepair> repairs;
+        public Engineer(string id, string firstName, string lastName, decimal salary, Corps corps)
             : base(id, firstName, lastName, salary, corps)
         {
-            Repairs = repairs;
+            repairs = new List<IRepair>();
         }
 
-        public ICollection<IRepair> Repairs { get; private set; }
+        public IReadOnlyCollection<IRepair> Repairs => repairs.AsReadOnly();
+
+        public void AddRepair(IRepair repair)
+        {
+            repairs.Add(repair);
+        }
 
         public override string ToString()
         {
             StringBuilder result = new StringBuilder();
             result.AppendLine(base.ToString());
-            result.AppendLine($"Corps: {Corps}");
-            result.Append("Repairs:");
-            if (Repairs.Count != 0)
-            {
-                result.AppendLine();
-                int counter = 0;
-                foreach (var repair in Repairs)
-                {
-                    if (counter == Repairs.Count - 1)
-                    {
-                        result.Append($"  {repair.ToString()}");
-                    }
-                    else
-                    {
-                        result.AppendLine($"  {repair.ToString()}");
-                    }
-                    counter++;
-                }
+            result.AppendLine("Repairs:");
 
+            foreach (var repair in Repairs)
+            {
+                result.AppendLine($"  {repair.ToString()}");
             }
-            //else
-            //{
-            //    result.AppendLine();
-            //}
             return result.ToString().TrimEnd();
         }
     }

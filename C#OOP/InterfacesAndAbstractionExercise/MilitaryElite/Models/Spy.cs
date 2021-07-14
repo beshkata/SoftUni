@@ -1,5 +1,5 @@
-﻿using MilitaryElite.Contracts;
-using System.Text;
+﻿using System;
+using MilitaryElite.Contracts;
 
 namespace MilitaryElite.Models
 {
@@ -11,18 +11,11 @@ namespace MilitaryElite.Models
             CodeNumber = codeNumber;
         }
 
-        public int CodeNumber { get; private set; }
+        public int CodeNumber { get; }
 
         public override string ToString()
         {
-            //Name: <firstName> <lastName> Id: <id>
-            //Code Number: <codeNumber>
-
-            StringBuilder result = new StringBuilder();
-            result.AppendLine($"Name: {FirstName} {LastName} Id: <id>");
-            result.Append($"Code Number: {CodeNumber}");
-
-            return result.ToString().TrimEnd();
+            return base.ToString() + Environment.NewLine + $"Code Number: {CodeNumber}";
         }
     }
 }

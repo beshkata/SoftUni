@@ -1,4 +1,7 @@
 ﻿using MilitaryElite.Contracts;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace MilitaryElite.Models
 {
@@ -10,9 +13,9 @@ namespace MilitaryElite.Models
             HoursWorked = hoursWorked;
         }
 
-        public string PartName { get; private set; }
+        public string PartName { get; }
 
-        public int HoursWorked { get; private set; }
+        public int HoursWorked { get; }
 
         public override string ToString()
         {

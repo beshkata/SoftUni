@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace MilitaryElite.Contracts
 {
     public interface ICommando
     {
-        public ICollection<IMission> Missions { get;}
+        public IReadOnlyCollection<IMission> Missions { get; }
 
+        void AddMission(IMission mission);
     }
 }

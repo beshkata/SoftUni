@@ -1,10 +1,15 @@
-﻿namespace MilitaryElite.Contracts
+﻿using MilitaryElite.Enums;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace MilitaryElite.Contracts
 {
     public interface IMission
     {
         public string CodeName { get; }
-        public string State { get; }
+        public MissionState State { get; }
 
-        void CompleteMission();
+        public void CompleteMission();
     }
 }
