@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +7,22 @@ using System.Threading.Tasks;
 
 namespace BasicWebServer.Server.HTTP
 {
-    public class HeaderCollection
+    public class HeaderCollection : IEnumerable<Header>
     {
-        private readonly Dictionary<String, Header> headers;
+        private readonly Dictionary<string, Header> headers;
 
         public HeaderCollection() => headers = new Dictionary<string, Header>();
 
+        public string this[string name] => headers[name].Value;
+
         public int Count => headers.Count;
 
-        public void Add(string name, string value)
-        {
-            var header = new Header(name, value);
+        public bool Contains(string name) => headers.ContainsKey(name);
 
-            headers.Add(name, header);
-        }
+        public void Add(string name, string value) => headers[name] = new Header(name, value);
+
+        public IEnumerator<Header> GetEnumerator() => headers.Values.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
