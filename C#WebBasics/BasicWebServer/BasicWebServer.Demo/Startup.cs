@@ -2,6 +2,10 @@
 using BasicWebServer.Server.HTTP;
 using BasicWebServer.Server.Responses;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace BasicWebServer.Demo
 {
@@ -12,14 +16,28 @@ namespace BasicWebServer.Demo
    Age: <input type='number' name ='Age'/>
 <input type='submit' value ='Save' />
 </form>";
+        private const string DownloadForm = @"<form action='/Content' method='POST'>
+   <input type='submit' value ='Download Sites Content' /> 
+</form>";
+        private const string FileName = "content.txt";
 
-        static void Main(string[] args)
-            => new HttpServer(routes => routes
+
+        static async Task Main()
+        {
+            await DownloadSitesAsTextFile(FileName,
+                new string[] { "https://judge.softuni.org/", "https://softuni.org/" });
+
+            var server = new HttpServer(routes => routes
             .MapGet("/", new TextResponse("Hello from the server!"))
             .MapGet("/HTML", new HtmlResponse(Startup.HtmlForm))
             .MapGet("/Redirect", new RedirectResponse("https://softuni.bg/"))
-            .MapPost("/HTML", new TextResponse("", Startup.AddFormDataAction)))
-            .Start();
+            .MapPost("/HTML", new TextResponse("", Startup.AddFormDataAction))
+            .MapGet("/Content", new HtmlResponse(DownloadForm))
+            .MapPost("/Content", new TextFileResponse(Startup.FileName)));
+
+            await server.Start();
+
+        }
 
         private static void AddFormDataAction(Request request, Response response)
         {
@@ -29,6 +47,33 @@ namespace BasicWebServer.Demo
                 response.Body += $"{key} - {value}";
                 response.Body += Environment.NewLine;
             }
+        }
+
+        private static async Task<string> DownloadWebSiteContent(string url)
+        {
+            var httpClient = new HttpClient();
+
+            using (httpClient)
+            {
+                var response = await httpClient.GetAsync(url);
+                var html = await response.Content.ReadAsStringAsync();
+                return html.Substring(0, 2000);
+            }
+        }
+
+        private static async Task DownloadSitesAsTextFile(string fileName, string[] urls)
+        {
+            var downloads = new List<Task<string>>();
+
+            foreach (var url in urls)
+            {
+                downloads.Add(DownloadWebSiteContent(url));
+            }
+
+            var responses = await Task.WhenAll(downloads);
+            var responsesString = string.Join(Environment.NewLine + new string('-', 100), responses);
+
+            await File.WriteAllTextAsync(fileName, responsesString);
         }
     }
 }
