@@ -30,7 +30,7 @@ namespace BasicWebServer.Server.HTTP
 
         public static Request Parse(string request)
         {
-            var lines = request.Split(Environment.NewLine);//"\r\n"
+            var lines = request.Split("\r\n");//"\r\n"
             var startLine = lines.First().Split(" ");
             var method = ParseMethod(startLine[0]);
             var url = startLine[1];
@@ -38,7 +38,7 @@ namespace BasicWebServer.Server.HTTP
             var cookies = ParseCookies(headers);
             var session = GetSession(cookies);
             var bodyLines = lines.Skip(headers.Count + 2);
-            var body = string.Join(Environment.NewLine, bodyLines);
+            var body = string.Join("\r\n", bodyLines);
             var form = ParseForm(headers, body);
 
             return new Request

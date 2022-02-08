@@ -98,15 +98,17 @@ namespace BasicWebServer.Server
             do
             {
                 var bytesRead = await networkStream.ReadAsync(buffer, 0, bufferLength);
+
                 totalBytes += bytesRead;
 
                 if (totalBytes > 10 * 1024)
                 {
-                    throw new InvalidOperationException("Request is too large");
+                    throw new InvalidOperationException("Request is too large.");
                 }
-                requestBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bufferLength));
+
+                requestBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bytesRead));
             }
-            while (networkStream.DataAvailable);
+            while (networkStream.DataAvailable); // May not run correctly over the Internet
 
             return requestBuilder.ToString();
         }
