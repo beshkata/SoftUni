@@ -7,12 +7,8 @@ namespace BasicWebServer.Demo
 {
     class Startup
     {
-        
-
         static async Task Main()
-        {
-
-            var server = new HttpServer(routes => routes
+            => await new HttpServer(routes => routes
             .MapGet<HomeController>("/", c => c.Index())
             .MapGet<HomeController>("/Redirect", c => c.Redirect())
             .MapGet<HomeController>("/HTML", c => c.Html())
@@ -24,10 +20,7 @@ namespace BasicWebServer.Demo
             .MapGet<UserController>("/Login", c => c.Login())
             .MapPost<UserController>("/Login", c => c.LogInUser())
             .MapGet<UserController>("/Logout", c => c.Logout())
-            .MapGet<UserController>("/UserProfile", c => c.GetUserData())
-            );
-            await server.Start();
-
-        }
+            .MapGet<UserController>("/UserProfile", c => c.GetUserData()))
+            .Start();
     }
 }
