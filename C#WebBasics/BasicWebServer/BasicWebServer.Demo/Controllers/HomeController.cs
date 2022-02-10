@@ -1,4 +1,5 @@
-﻿using BasicWebServer.Server.Controllers;
+﻿using BasicWebServer.Demo.Models;
+using BasicWebServer.Server.Controllers;
 using BasicWebServer.Server.HTTP;
 using System;
 using System.Linq;
@@ -34,14 +35,16 @@ namespace BasicWebServer.Demo.Controllers
 
         public Response HtmlFormPost()
         {
-            string formData = "";
-            foreach (var (key, value) in Request.Form)
-            {
-                formData += $"{key} - {value}";
-                formData += Environment.NewLine;
-            }
+            var name = Request.Form["Name"];
+            var age = Request.Form["Age"];
 
-            return Text(formData);
+            var model = new FormViewModel
+            {
+                Name = name,
+                Age = int.Parse(age)
+            };
+
+            return View(model);
         }
 
         public Response Cookies()
