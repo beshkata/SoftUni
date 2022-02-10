@@ -12,7 +12,7 @@ namespace BasicWebServer.Server.Controllers
     {
         protected Controller(Request request)
         {
-
+            Request = request;
         }
 
         protected Request Request { get; private init; }
