@@ -4,13 +4,13 @@ using System.IO;
 
 namespace BasicWebServer.Server.Responses
 {
-    public class TextFileResponse : Response
+    public class FileResponse : Response
     {
-        public TextFileResponse(string fileName)
+        public FileResponse(string fileName)
             : base(StatusCode.OK)
         {
             FileName = fileName;
-            Headers.Add(Header.ContentType, ContentType.PlainText);
+            Headers.Add(Header.ContentType, ContentType.FileContent);
         }
 
         public string FileName { get; init; }
@@ -19,7 +19,9 @@ namespace BasicWebServer.Server.Responses
         {
             if (File.Exists(FileName))
             {
-                Body = File.ReadAllTextAsync(FileName).Result;
+                Body = string.Empty;
+                FileContent = File.ReadAllBytes(FileName);
+
                 var fileBytesCount = new FileInfo(FileName).Length;
 
                 Headers.Add(Header.ContentLength, fileBytesCount.ToString());

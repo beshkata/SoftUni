@@ -23,6 +23,6 @@ namespace BasicWebServer.Server.Controllers
         protected Response Unauthorized() => new UnauthorizedResponse();
         protected Response NotFound() => new NotFoundResponse();
         protected Response Redirect(string location) => new RedirectResponse(location);
-        protected Response File(string fileName) => new TextFileResponse(fileName);
+        protected Response File(string fileName) => new FileResponse(fileName);
     }
 }
