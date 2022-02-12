@@ -3,6 +3,6 @@
     public class DatabaseConfiguration
     {
         public const string ConnectionString =
-            @"Server=BESHO-PC\SQLEXPRESS;Database=SharedTrip;Trusted_Connection=True;Integrated Security=True;";
+            @"Server=.;Database=SharedTrip;Trusted_Connection=True;Integrated Security=True;";
     }
 }
