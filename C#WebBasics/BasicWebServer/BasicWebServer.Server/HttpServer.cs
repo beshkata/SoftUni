@@ -60,11 +60,6 @@ namespace BasicWebServer.Server
 
                      var response = routingTable.MatchResponse(request);
 
-                     if (response.PreRenderAction != null)
-                     {
-                         response.PreRenderAction(request, response);
-                     }
-
                      AddSession(request, response);
 
                      await WriteResponse(networkStream, response);
@@ -115,6 +110,13 @@ namespace BasicWebServer.Server
         private async Task WriteResponse(NetworkStream networkStream, Response response)
         {
             var responseBytes = Encoding.UTF8.GetBytes(response.ToString());
+
+            if (response.FileContent != null)
+            {
+                responseBytes = responseBytes
+                    .Concat(response.FileContent)
+                    .ToArray();
+            }
 
             await networkStream.WriteAsync(responseBytes);
         }
