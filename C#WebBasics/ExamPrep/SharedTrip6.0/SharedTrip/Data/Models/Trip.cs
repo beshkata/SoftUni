@@ -14,6 +14,7 @@ namespace SharedTrip.Data.Models
         }
 
         [Key]
+        [StringLength(GlobalConstants.GuidMaxLength)]
         public string Id { get; set; }
 
         [Required]

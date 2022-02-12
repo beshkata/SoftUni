@@ -2,6 +2,8 @@
 {
     public static class GlobalConstants
     {
+        public const int GuidMaxLength = 36;
+
         public const int UserUsernameMaxLength = 20;
         public const int UserEmailMaxLength = 100;
         public const int UserPasswordHashlMaxLength = 64;
