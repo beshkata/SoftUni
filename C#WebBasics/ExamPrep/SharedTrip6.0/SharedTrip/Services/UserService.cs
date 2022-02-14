@@ -73,8 +73,8 @@ namespace SharedTrip.Services
 
             user.Password = HashPassword(model.Password);
 
-            _repo.Add(user);
-            _repo.SaveChanges();
+            _repo.AddAsync(user);
+            _repo.SaveChangesAsync();
         }
 
         private User GetUserByUsername(string username)
