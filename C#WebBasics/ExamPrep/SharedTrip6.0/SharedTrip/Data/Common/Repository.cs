@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SharedTrip.Data.Common
 {
@@ -12,19 +13,19 @@ namespace SharedTrip.Data.Common
             dbContext = context;
         }
 
-        public void Add<T>(T entity) where T : class
+        public async Task AddAsync<T>(T entity) where T : class
         {
-            DbSet<T>().Add(entity);
+            await DbSet<T>().AddAsync(entity);
         }
 
         public IQueryable<T> All<T>() where T : class
         {
-            return DbSet<T>().AsQueryable();
+            return  DbSet<T>().AsQueryable();
         }
 
-        public int SaveChanges()
+        public async Task<int> SaveChangesAsync()
         {
-            return dbContext.SaveChanges();
+            return await dbContext.SaveChangesAsync();
         }
 
         private DbSet<T> DbSet<T>() where T : class
