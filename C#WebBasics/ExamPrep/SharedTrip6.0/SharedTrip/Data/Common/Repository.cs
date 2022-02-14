@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace SharedTrip.Data.Common
 {
-    public class Repository
+    public class Repository : IRepository
     {
         private readonly DbContext dbContext;
 
