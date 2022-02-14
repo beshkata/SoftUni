@@ -50,13 +50,40 @@ namespace SharedTrip.Controllers
             return Redirect("/Trips/All");
         }
 
-        //[Authorize]
+        [Authorize]
         public Response All()
         {
-            return View();
+            IEnumerable<AllTripViewModel> trips = _tripService.GetAllTrips();
+
+            return View(trips);
         }
 
-        //[Authorize]
-        public Response Details() => View();   
+        [Authorize]
+        public Response Details(string tripId)
+        {
+            TripDetailsViewModel tripDetailsViewModel = _tripService.GetTripDetails(tripId);
+            return View(tripDetailsViewModel);
+        }
+
+        [Authorize]
+        public Response AddUserToTrip(string tripId)
+        {
+            try
+            {
+                _tripService.AddUserToTrip(tripId, User.Id);
+            }
+            catch (ArgumentException aex)
+            {
+                return View(new List<ErrorViewModel>() { new ErrorViewModel(aex.Message) }, "/Error");
+            }
+            catch (Exception)
+            {
+                return View(new List<ErrorViewModel>() { new ErrorViewModel("Unexpected error") }, "/Error");
+            }
+            return Redirect("/Trips/All");
+
+            
+
+        }
     }
 }
