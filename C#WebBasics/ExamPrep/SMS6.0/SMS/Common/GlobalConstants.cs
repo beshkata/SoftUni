@@ -8,6 +8,8 @@
         public const int UserUsernameMinLength = 5;
         public const int UserEmailMaxLength = 100;
         public const int UserPasswordHashlMaxLength = 64;
+        public const int UserPasswordMaxLength = 20;
+        public const int UserPasswordMinLength = 6;
 
         public const int ProductNameMaxLength = 20;
         public const int ProductNameMinLength = 4;

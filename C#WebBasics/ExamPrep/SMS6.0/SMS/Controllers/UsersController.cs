@@ -2,22 +2,50 @@
 using BasicWebServer.Server.Controllers;
 using BasicWebServer.Server.HTTP;
 using SMS.Contracts;
-using SMS.Models.UserViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SMS.Models;
 
 namespace SMS.Controllers
 {
     public class UsersController : Controller
     {
-        private IUserService userService;
-        public UsersController(Request request, IUserService _userService)
+        private readonly IUserService userService;
+
+        public UsersController(
+            Request request,
+            IUserService _userService) 
             : base(request)
         {
             userService = _userService;
+        }
+
+        public Response Login()
+        {
+            if (User.IsAuthenticated)
+            {
+                return Redirect("/");
+            }
+
+            return View(new { IsAuthenticated = false });
+        }
+
+        [HttpPost]
+        public Response Login(LoginViewModel model)
+        {
+            Request.Session.Clear();
+            string id = userService.Login(model);
+
+            if (id == null)
+            {
+                return View(new { ErrorMessage = "Incorect Login" }, "/Error");
+            }
+
+            SignIn(id);
+
+            CookieCollection cookies = new CookieCollection();
+            cookies.Add(Session.SessionCookieName,
+                Request.Session.Id);
+
+            return Redirect("/");
         }
 
         public Response Register()
@@ -26,13 +54,29 @@ namespace SMS.Controllers
             {
                 return Redirect("/");
             }
+
             return View(new { IsAuthenticated = false });
         }
 
         [HttpPost]
-        public Response Register(RegisterUserViewModel model)
+        public Response Register(RegisterViewModel model)
         {
-            var (isValid, errorMessage) = userService.ValidateModel(model);
+            var (isRegistered, error) = userService.Register(model);
+
+            if (isRegistered)
+            {
+                return Redirect("/Users/Login");
+            }
+
+            return View(new { ErrorMessage = error }, "/Error");
+        }
+
+        [Authorize]
+        public Response Logout()
+        {
+            SignOut();
+
+            return Redirect("/");
         }
     }
 }
