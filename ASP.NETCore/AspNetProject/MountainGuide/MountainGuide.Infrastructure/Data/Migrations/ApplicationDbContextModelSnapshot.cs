@@ -2,9 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MountainGuide.Data;
-using System;
+using MountainGuide.Infrastructure.Data;
 
 namespace MountainGuide.Data.Migrations
 {

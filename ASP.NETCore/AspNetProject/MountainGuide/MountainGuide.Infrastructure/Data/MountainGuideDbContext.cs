@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace MountainGuide.Data
+namespace MountainGuide.Infrastructure.Data
 {
     public class MountainGuideDbContext : IdentityDbContext
     {

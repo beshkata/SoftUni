@@ -3,11 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MountainGuide.Data;
-using System;
 
-namespace MountainGuide.Data.Migrations
+namespace MountainGuide.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(MountainGuideDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]

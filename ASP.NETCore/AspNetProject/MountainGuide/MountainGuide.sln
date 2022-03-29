@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MountainGuide", "MountainGuide\MountainGuide.csproj", "{64C81F2B-F6A5-4892-A0E6-0CAA8D4EEEFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MountainGuide.Core", "MountainGuide.Core\MountainGuide.Core.csproj", "{0D51F740-A36E-4E55-AD8D-A2A260E46852}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MountainGuide.Infrastructure", "MountainGuide.Infrastructure\MountainGuide.Infrastructure.csproj", "{BDEBF37C-70B2-410B-AC96-FACDC21F7BE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{64C81F2B-F6A5-4892-A0E6-0CAA8D4EEEFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64C81F2B-F6A5-4892-A0E6-0CAA8D4EEEFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64C81F2B-F6A5-4892-A0E6-0CAA8D4EEEFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D51F740-A36E-4E55-AD8D-A2A260E46852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D51F740-A36E-4E55-AD8D-A2A260E46852}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D51F740-A36E-4E55-AD8D-A2A260E46852}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D51F740-A36E-4E55-AD8D-A2A260E46852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDEBF37C-70B2-410B-AC96-FACDC21F7BE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDEBF37C-70B2-410B-AC96-FACDC21F7BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDEBF37C-70B2-410B-AC96-FACDC21F7BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDEBF37C-70B2-410B-AC96-FACDC21F7BE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
