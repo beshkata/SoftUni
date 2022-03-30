@@ -10,6 +10,7 @@ namespace MountainGuide.Infrastructure.Data.Models
         [Key]
         public int Id { get; init; }
 
+#nullable disable
         [Required]
         [StringLength(NameMaxLength)]
         public string Name { get; set; }
@@ -43,7 +44,7 @@ namespace MountainGuide.Infrastructure.Data.Models
         [ForeignKey(nameof(Mountain))]
         public int? MountainId { get; set; }
 
-        public Mountain? Mountain { get; set; }
+        public Mountain Mountain { get; set; }
 
         public IEnumerable<Image> Images { get; init; } = new List<Image>();
 
