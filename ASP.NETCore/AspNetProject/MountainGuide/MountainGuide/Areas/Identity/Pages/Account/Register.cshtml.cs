@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MountainGuide.Infrastructure.Data.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace MountainGuide.Areas.Identity.Pages.Account
@@ -35,6 +36,12 @@ namespace MountainGuide.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
+            [StringLength(256, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            [Display(Name = "UserName")]
+            public string Username { get; set; }
+
+
+            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -57,7 +64,11 @@ namespace MountainGuide.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                var user = new User
+                {
+                    UserName = Input.Username,
+                    Email = Input.Email,
+                };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -75,20 +86,5 @@ namespace MountainGuide.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
-
-        private IdentityUser CreateUser()
-        {
-            try
-            {
-                return Activator.CreateInstance<IdentityUser>();
-            }
-            catch
-            {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-            }
-        }
-
     }
 }
