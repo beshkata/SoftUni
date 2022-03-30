@@ -16,3 +16,16 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+img.header {
+    opacity: 0.5;
+    height: 50%
+}
+
+img.gallery {
+    display: block;
+    background: transparent;
+    padding: 8px;
+    border: 1px solid #ccc;
+    box-shadow: 10px 10px 10px #999;
+}
