@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MountainGuide.Infrastructure.Data;
@@ -16,26 +17,157 @@ namespace MountainGuide.Infrastructure.Extentions
 
             await MigrateDatabase(services);
 
+            await SeedUsers(services);
+
             await SeedTouristBuildingType(services);
 
             await SeedMountain(services);
 
-            SeedPeak(services);
+            await SeedPeak(services);
 
             await SeedTouristAssociation(services);
 
             await SeedTouristBuildingWithCoordinates(services);
 
-            SeedImages(services);
+            await SeedImages(services);
+
+            await SeedComments(services);
 
             return app;
         }
 
-        private static void SeedImages(IServiceProvider services)
+        private static async Task SeedUsers(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<MountainGuideDbContext>();
+            var userManager =  services.GetService<UserManager<User>>();
+
+            if (await data.Users.AnyAsync())
+            {
+                return;
+            }
+
+            User user = new User
+            {
+                UserName = "PetarPetrov",
+                Email = "petar@petrov.bg",
+            };
+            var password = "petar123";
+
+            var result = await userManager.CreateAsync(user, password);
+        }
+
+        private static async Task SeedComments(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<MountainGuideDbContext>();
+            var userManager = services.GetService<UserManager<User>>();
+            User user = await userManager.FindByNameAsync("PetarPetrov");
+
+            if (user == null)
+            {
+                return;
+            }
+
+            if (await data.Comments.AnyAsync())
+            {
+                return;
+            }
+
+            List<Comment> comments = new List<Comment>();
+
+            TouristBuilding kozyaStena = data
+                .TouristBuildings
+                .Where(tb => tb.Name == "Kozya Stena")
+                .First();
+            if (kozyaStena != null)
+            {
+                Comment[] kozyaStenaComments = new[]
+                {
+                    new Comment
+                    {
+                        Content = "Kozya Stena is a Great hut",
+                        User = user,
+                        UserId = user.Id,
+                        TouristBuilding = kozyaStena,
+                        TouristBuildingId = kozyaStena.Id
+                    },
+                    new Comment
+                    {
+                        Content = "I Love Kozya Stena hut",
+                        User = user,
+                        UserId = user.Id,
+                        TouristBuilding = kozyaStena,
+                        TouristBuildingId = kozyaStena.Id
+                    }
+                };
+                comments.AddRange(kozyaStenaComments);
+            }
+
+
+            TouristBuilding eho = data
+                .TouristBuildings
+                .Where(tb => tb.Name == "Eho")
+                .First();
+            if (eho != null)
+            {
+                Comment[] ehoComments = new[]
+                {
+                    new Comment
+                    {
+                        Content = "Eho i a Great hut",
+                        User = user,
+                        UserId = user.Id,
+                        TouristBuilding = eho,
+                        TouristBuildingId = eho.Id
+                    },
+                    new Comment
+                    {
+                        Content = "I Love Eho hut",
+                        User = user,
+                        UserId = user.Id,
+                        TouristBuilding = eho,
+                        TouristBuildingId = eho.Id
+                    }
+                };
+                comments.AddRange(ehoComments);
+            }
+            
+            TouristBuilding pleven = data
+                .TouristBuildings
+                .Where(tb => tb.Name == "Pleven")
+                .First();
+            if (pleven != null)
+            {
+                Comment[] plevenComments = new[]
+                {
+                    new Comment
+                    {
+                        Content = "Pleven i a Great hut",
+                        User = user,
+                        UserId = user.Id,
+                        TouristBuilding = pleven,
+                        TouristBuildingId = pleven.Id
+                    },
+                    new Comment
+                    {
+                        Content = "I Love Pleven hut",
+                        User = user,
+                        UserId = user.Id,
+                        TouristBuilding = pleven,
+                        TouristBuildingId = pleven.Id
+                    }
+                };
+                comments.AddRange(plevenComments);
+            }
+
+            await data.Comments.AddRangeAsync(comments);
+            await data.SaveChangesAsync();
+        }
+
+        private static async Task SeedImages(IServiceProvider services)
         {
             var data = services.GetRequiredService<MountainGuideDbContext>();
 
-            if (data.Images.Any())
+            if (await data.Images.AnyAsync())
             {
                 return;
             }
@@ -324,8 +456,8 @@ namespace MountainGuide.Infrastructure.Extentions
 
             pictures.AddRange(rilaPics);
 
-            data.AddRange(pictures);
-            data.SaveChanges();
+            await data.AddRangeAsync(pictures);
+            await data.SaveChangesAsync();
         }
 
         private static async Task SeedTouristBuildingWithCoordinates(IServiceProvider services)
@@ -448,11 +580,11 @@ namespace MountainGuide.Infrastructure.Extentions
             await data.SaveChangesAsync();
         }
 
-        private static void SeedPeak(IServiceProvider services)
+        private static async Task SeedPeak(IServiceProvider services)
         {
             var data = services.GetRequiredService<MountainGuideDbContext>();
 
-            if (data.Peaks.Any())
+            if (await data.Peaks.AnyAsync())
             {
                 return;
             }
@@ -466,7 +598,7 @@ namespace MountainGuide.Infrastructure.Extentions
                 .Where(m => m.Name == "Rila")
                 .First();
 
-            data.Peaks.AddRange(new[]
+            await data.Peaks.AddRangeAsync(new[]
             {
                 new Peak
                 {
@@ -518,7 +650,7 @@ namespace MountainGuide.Infrastructure.Extentions
                 }
             });
 
-            data.SaveChanges();
+            await data.SaveChangesAsync();
         }
 
         private static async Task SeedMountain(IServiceProvider services)
