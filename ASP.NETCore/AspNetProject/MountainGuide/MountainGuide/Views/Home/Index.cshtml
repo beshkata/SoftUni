@@ -1,8 +1,9 @@
-﻿@{
+﻿@model IndexViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 <div class="container-fluid">
-    <div class="text-center">
+    <div class="text-center ">
         <h1>Welcome to Mountain Guide</h1>
     </div>
     <div class="container-fluid m-4">
@@ -15,13 +16,24 @@
                     Announcements
                 </article>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
+                    @if (Model.Announcements.Count > 0)
+                    {
+                        foreach (var announcement in Model.Announcements)
+                        {
+                            <li class="list-group-item">
+                                @announcement.ContentBegining
+                                <a class="text-info float-end align-middle" asp-controller="Announcement" asp-action="Details" asp-route-id="@announcement.Id">Details</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="list-group-item">Sorry! Announcement's list is empty</li>
+                    }
                 </ul>
                 <div class="card-footer">
                     <div class="align-middle fst-italic">
-                        Total Announcement: 3
+                        Total Announcement: @Model.TotalAnnouncements
                         <a class="text-info float-end align-middle" href="">View All</a>
                     </div>
                 </div>
@@ -31,13 +43,24 @@
                     Tourist buildins
                 </article>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
+                    @if (Model.TouristBuildings.Count > 0)
+                    {
+                        foreach (var touristBuilding in Model.TouristBuildings)
+                        {
+                            <li class="list-group-item">
+                                @touristBuilding.Name
+                                <a class="text-info float-end align-middle" asp-controller="TouristBuilding" asp-action="Details" asp-route-id="@touristBuilding.Id">Details</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="list-group-item">Sorry! Tourist building's list is empty</li>
+                    }
                 </ul>
                 <div class="card-footer">
                     <div class="align-middle fst-italic">
-                        Total Tourist buildins: 3
+                        Total Tourist buildins: @Model.TotalTouristBuildings
                         <a class="text-info float-end align-middle" href="">View All</a>
                     </div>
                 </div>
@@ -47,13 +70,24 @@
                     Mountains
                 </article>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
+                    @if (Model.Mountains.Count > 0)
+                    {
+                        foreach (var mountain in Model.Mountains)
+                        {
+                            <li class="list-group-item">
+                                @mountain.Name
+                                <a class="text-info float-end align-middle" asp-controller="Mountain" asp-action="Details" asp-route-id="@mountain.Id">Details</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="list-group-item">Sorry! Mountain's list is empty</li>
+                    }
                 </ul>
                 <div class="card-footer">
                     <div class="align-middle fst-italic">
-                        Total Mountains: 3
+                        Total Mountains: @Model.TotalMountains
                         <a class="text-info float-end align-middle" href="">View All</a>
                     </div>
                 </div>
@@ -63,13 +97,24 @@
                     Peaks
                 </article>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
+                    @if (Model.Peaks.Count > 0)
+                    {
+                        foreach (var peak in Model.Peaks)
+                        {
+                            <li class="list-group-item">
+                                @peak.Name
+                                <a class="text-info float-end align-middle" asp-controller="Peak" asp-action="Details" asp-route-id="@peak.Id">Details</a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="list-group-item">Sorry! Peak's list is empty</li>
+                    }
                 </ul>
                 <div class="card-footer">
                     <div class="align-middle fst-italic">
-                        Total Peaks: 3
+                        Total Peaks: @Model.TotalPeaks
                         <a class="text-info float-end align-middle" href="">View All</a>
                     </div>
                 </div>

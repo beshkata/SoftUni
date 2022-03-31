@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using MountainGuide.Core.Services.Contracts;
+using MountainGuide.Core.Services.Home;
 using MountainGuide.Infrastructure.Data;
 using MountainGuide.Infrastructure.Data.Models;
 using MountainGuide.Infrastructure.Extentions;
@@ -10,6 +12,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<MountainGuideDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddTransient<IHomeService, HomeService>();
 
 builder.Services.AddDefaultIdentity<User>(options =>
 {
@@ -23,7 +26,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-app.PrepareDatabase();
+await app.PrepareDatabase();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

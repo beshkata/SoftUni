@@ -31,7 +31,7 @@ namespace MountainGuide.Infrastructure.Extentions
 
             await SeedImages(services);
 
-            await SeedComments(services);
+            await SeedCommentsAndAnnouncements(services);
 
             return app;
         }
@@ -56,7 +56,7 @@ namespace MountainGuide.Infrastructure.Extentions
             var result = await userManager.CreateAsync(user, password);
         }
 
-        private static async Task SeedComments(IServiceProvider services)
+        private static async Task SeedCommentsAndAnnouncements(IServiceProvider services)
         {
             var data = services.GetRequiredService<MountainGuideDbContext>();
             var userManager = services.GetService<UserManager<User>>();
@@ -73,6 +73,7 @@ namespace MountainGuide.Infrastructure.Extentions
             }
 
             List<Comment> comments = new List<Comment>();
+            List<Announcement> announcements = new List<Announcement>();
 
             TouristBuilding kozyaStena = data
                 .TouristBuildings
@@ -100,6 +101,20 @@ namespace MountainGuide.Infrastructure.Extentions
                     }
                 };
                 comments.AddRange(kozyaStenaComments);
+
+                Announcement[] kozyaStenaAnnouncement = new[]
+                {
+                    new Announcement
+                    {
+                        Content = "Kozia Stena hut organizes a spring party on March 22, 2022!",
+                        User = user,
+                        UserId = user.Id,
+                        TouristBuilding = kozyaStena,
+                        TouristBuildingId = kozyaStena.Id
+
+                    }
+                };
+                announcements.AddRange(kozyaStenaAnnouncement);
             }
 
 
@@ -129,6 +144,20 @@ namespace MountainGuide.Infrastructure.Extentions
                     }
                 };
                 comments.AddRange(ehoComments);
+
+                Announcement[] ehoAnnouncement = new[]
+                {
+                    new Announcement
+                    {
+                        Content = "Eho hut will be closed on April 14 due to renovations!",
+                        User = user,
+                        UserId = user.Id,
+                        TouristBuilding = eho,
+                        TouristBuildingId = eho.Id
+
+                    }
+                };
+                announcements.AddRange(ehoAnnouncement);
             }
             
             TouristBuilding pleven = data
@@ -157,8 +186,23 @@ namespace MountainGuide.Infrastructure.Extentions
                     }
                 };
                 comments.AddRange(plevenComments);
+
+                Announcement[] plevenAnnouncement = new[]
+                {
+                    new Announcement
+                    {
+                        Content = "Pleven hut organizes a chess competition on April 20, 2022!",
+                        User = user,
+                        UserId = user.Id,
+                        TouristBuilding = pleven,
+                        TouristBuildingId = pleven.Id
+
+                    }
+                };
+                announcements.AddRange(plevenAnnouncement);
             }
 
+            await data.Announcements.AddRangeAsync(announcements);
             await data.Comments.AddRangeAsync(comments);
             await data.SaveChangesAsync();
         }
