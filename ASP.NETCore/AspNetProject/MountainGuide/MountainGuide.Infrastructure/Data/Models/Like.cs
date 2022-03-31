@@ -16,5 +16,20 @@ namespace MountainGuide.Infrastructure.Data.Models
 
         public DateTime DateTime { get; init; } = DateTime.UtcNow;
 
+        [ForeignKey(nameof(TouristAssociation))]
+        public int? TouristAssociationId { get; set; }
+
+        public TouristAssociation TouristAssociation { get; set; }
+
+        [ForeignKey(nameof(TouristBuilding))]
+        public int? TouristBuildingId { get; set; }
+
+        public TouristBuilding TouristBuilding { get; set; }
+
+        [ForeignKey(nameof(Comment))]
+        public int? CommentId { get; set; }
+
+        public Comment Comment { get; set; }
+
     }
 }

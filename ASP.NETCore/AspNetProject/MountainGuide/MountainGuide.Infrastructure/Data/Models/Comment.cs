@@ -20,7 +20,17 @@ namespace MountainGuide.Infrastructure.Data.Models
 
         public DateTime DateTime { get; init; } = DateTime.UtcNow;
 
-        public IEnumerable<Comment> Comments { get; init; } = new List<Comment>();
+        [ForeignKey(nameof(TouristBuilding))]
+        public int? TouristBuildingId { get; init; }
+
+        public TouristBuilding TouristBuilding { get; init; }
+
+        [ForeignKey(nameof(TouristAssociation))]
+        public int? TouristAssociationId { get; set; }
+
+        public TouristAssociation TouristAssociation { get; set; }
+
+        public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
 
         public IEnumerable<Like> Likes { get; init; } = new List<Like>();
 

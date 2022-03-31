@@ -11,12 +11,14 @@ namespace MountainGuide.Infrastructure.Data.ModelConfig
                 .Entity<AssociationManager>()
                 .HasOne(am => am.User)
                 .WithOne()
+                .HasForeignKey<AssociationManager>(am => am.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<AssociationManager>()
                 .HasOne(am => am.TouristAssociation)
                 .WithOne()
+                .HasForeignKey<AssociationManager>(am => am.TouristAssociationId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
 

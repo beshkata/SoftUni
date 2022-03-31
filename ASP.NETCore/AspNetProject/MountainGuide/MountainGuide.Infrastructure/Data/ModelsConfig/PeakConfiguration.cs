@@ -11,13 +11,15 @@ namespace MountainGuide.Infrastructure.Data.ModelConfig
                 .Entity<Peak>()
                 .HasOne(p => p.Mountain)
                 .WithMany(m => m.Peaks)
+                .HasForeignKey(p => p.MountainId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<Peak>()
                 .HasOne(p => p.Coordinate)
                 .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey<Peak>(p => p.CoordinateId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .Entity<Peak>()

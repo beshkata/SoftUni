@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MountainGuide.Infrastructure.Data;
 using MountainGuide.Infrastructure.Data.Models;
+using MountainGuide.Infrastructure.Extentions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+app.PrepareDatabase();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

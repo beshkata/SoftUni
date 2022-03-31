@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MountainGuide.Infrastructure.Data.Models
 {
@@ -25,5 +26,6 @@ namespace MountainGuide.Infrastructure.Data.Models
         [Required]
         [StringLength(ValueMaxLength)]
         public string LongitudeValue { get; set; }
+
     }
 }

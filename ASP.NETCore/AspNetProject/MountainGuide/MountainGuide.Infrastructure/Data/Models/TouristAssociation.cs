@@ -29,5 +29,8 @@ namespace MountainGuide.Infrastructure.Data.Models
         public IEnumerable<Image> Images { get; set; } = new List<Image>();
 
         public IEnumerable<Announcement> Announcements { get; set; } = new List<Announcement>();
+
+        public IEnumerable<Like> Likes { get; set; } = new List<Like>();
+
     }
 }

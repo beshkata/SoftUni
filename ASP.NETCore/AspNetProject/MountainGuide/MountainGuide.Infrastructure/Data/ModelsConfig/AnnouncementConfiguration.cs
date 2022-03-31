@@ -11,6 +11,7 @@ namespace MountainGuide.Infrastructure.Data.ModelConfig
                 .Entity<Announcement>()
                 .HasOne(a => a.User)
                 .WithMany(u => u.Announcements)
+                .HasForeignKey(a => a.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder

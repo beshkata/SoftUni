@@ -11,12 +11,14 @@ namespace MountainGuide.Infrastructure.Data.ModelConfig
                 .Entity<BuildingManager>()
                 .HasOne(bm => bm.User)
                 .WithOne()
+                .HasForeignKey<BuildingManager>(bm => bm.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<BuildingManager>()
                 .HasOne(bm => bm.TouristBuilding)
                 .WithOne()
+                .HasForeignKey<BuildingManager>(bm => bm.TouristBuildingId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
 

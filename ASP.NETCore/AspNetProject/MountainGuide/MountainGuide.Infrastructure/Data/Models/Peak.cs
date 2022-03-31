@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MountainGuide.Infrastructure.Data.Models
 {
@@ -18,6 +19,7 @@ namespace MountainGuide.Infrastructure.Data.Models
 
         public string Description { get; set; }
 
+        [ForeignKey(nameof(Coordinate))]
         public int? CoordinateId { get; set; }
 
         public Coordinate Coordinate { get; set; }

@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MountainGuide.Infrastructure.Data;
 
 #nullable disable
 
-namespace MountainGuide.Data.Migrations
+namespace MountainGuide.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(MountainGuideDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220330053303_ManagersBugFixed")]
+    partial class ManagersBugFixed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -431,6 +433,7 @@ namespace MountainGuide.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
@@ -478,9 +481,6 @@ namespace MountainGuide.Data.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("TouristAssociationId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("TouristBuildingId")
                         .HasColumnType("int");
 
@@ -491,8 +491,6 @@ namespace MountainGuide.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CommentId");
-
-                    b.HasIndex("TouristAssociationId");
 
                     b.HasIndex("TouristBuildingId");
 
@@ -538,6 +536,7 @@ namespace MountainGuide.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MountainId")
@@ -575,6 +574,10 @@ namespace MountainGuide.Data.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<string>("ManagerId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -585,6 +588,8 @@ namespace MountainGuide.Data.Migrations
                         .HasColumnType("nvarchar(300)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ManagerId");
 
                     b.ToTable("TouristAssociations");
                 });
@@ -610,6 +615,10 @@ namespace MountainGuide.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ManagerId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int?>("MountainId")
                         .HasColumnType("int");
 
@@ -633,6 +642,8 @@ namespace MountainGuide.Data.Migrations
 
                     b.HasIndex("CoordinateId")
                         .IsUnique();
+
+                    b.HasIndex("ManagerId");
 
                     b.HasIndex("MountainId");
 
@@ -786,84 +797,57 @@ namespace MountainGuide.Data.Migrations
                         .WithMany("Comments")
                         .HasForeignKey("CommentId");
 
-                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristAssociation", "TouristAssociation")
+                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristAssociation", null)
                         .WithMany("Comments")
-                        .HasForeignKey("TouristAssociationId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("TouristAssociationId");
 
-                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristBuilding", "TouristBuilding")
+                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristBuilding", null)
                         .WithMany("Comments")
-                        .HasForeignKey("TouristBuildingId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("TouristBuildingId");
 
                     b.HasOne("MountainGuide.Infrastructure.Data.Models.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("TouristAssociation");
-
-                    b.Navigation("TouristBuilding");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("MountainGuide.Infrastructure.Data.Models.Image", b =>
                 {
-                    b.HasOne("MountainGuide.Infrastructure.Data.Models.Mountain", "Mountain")
+                    b.HasOne("MountainGuide.Infrastructure.Data.Models.Mountain", null)
                         .WithMany("Images")
                         .HasForeignKey("MountainId");
 
-                    b.HasOne("MountainGuide.Infrastructure.Data.Models.Peak", "Peak")
+                    b.HasOne("MountainGuide.Infrastructure.Data.Models.Peak", null)
                         .WithMany("Images")
                         .HasForeignKey("PeakId");
 
-                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristAssociation", "TouristAssociation")
+                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristAssociation", null)
                         .WithMany("Images")
                         .HasForeignKey("TouristAssociationId");
 
-                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristBuilding", "TouristBuilding")
+                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristBuilding", null)
                         .WithMany("Images")
                         .HasForeignKey("TouristBuildingId");
-
-                    b.Navigation("Mountain");
-
-                    b.Navigation("Peak");
-
-                    b.Navigation("TouristAssociation");
-
-                    b.Navigation("TouristBuilding");
                 });
 
             modelBuilder.Entity("MountainGuide.Infrastructure.Data.Models.Like", b =>
                 {
-                    b.HasOne("MountainGuide.Infrastructure.Data.Models.Comment", "Comment")
+                    b.HasOne("MountainGuide.Infrastructure.Data.Models.Comment", null)
                         .WithMany("Likes")
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("CommentId");
 
-                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristAssociation", "TouristAssociation")
+                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristBuilding", null)
                         .WithMany("Likes")
-                        .HasForeignKey("TouristAssociationId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristBuilding", "TouristBuilding")
-                        .WithMany("Likes")
-                        .HasForeignKey("TouristBuildingId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("TouristBuildingId");
 
                     b.HasOne("MountainGuide.Infrastructure.Data.Models.User", "User")
                         .WithMany("Likes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Comment");
-
-                    b.Navigation("TouristAssociation");
-
-                    b.Navigation("TouristBuilding");
 
                     b.Navigation("User");
                 });
@@ -873,7 +857,7 @@ namespace MountainGuide.Data.Migrations
                     b.HasOne("MountainGuide.Infrastructure.Data.Models.Coordinate", "Coordinate")
                         .WithOne()
                         .HasForeignKey("MountainGuide.Infrastructure.Data.Models.Peak", "CoordinateId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("MountainGuide.Infrastructure.Data.Models.Mountain", "Mountain")
                         .WithMany("Peaks")
@@ -885,13 +869,26 @@ namespace MountainGuide.Data.Migrations
                     b.Navigation("Mountain");
                 });
 
+            modelBuilder.Entity("MountainGuide.Infrastructure.Data.Models.TouristAssociation", b =>
+                {
+                    b.HasOne("MountainGuide.Infrastructure.Data.Models.AssociationManager", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerId");
+
+                    b.Navigation("Manager");
+                });
+
             modelBuilder.Entity("MountainGuide.Infrastructure.Data.Models.TouristBuilding", b =>
                 {
                     b.HasOne("MountainGuide.Infrastructure.Data.Models.Coordinate", "Coordinate")
                         .WithOne()
                         .HasForeignKey("MountainGuide.Infrastructure.Data.Models.TouristBuilding", "CoordinateId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("MountainGuide.Infrastructure.Data.Models.BuildingManager", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerId");
 
                     b.HasOne("MountainGuide.Infrastructure.Data.Models.Mountain", "Mountain")
                         .WithMany("TouristBuildings")
@@ -904,7 +901,7 @@ namespace MountainGuide.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristBuildingType", "TouristBuildingType")
+                    b.HasOne("MountainGuide.Infrastructure.Data.Models.TouristBuildingType", "Type")
                         .WithMany("TouristBuildings")
                         .HasForeignKey("TouristBuildingTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -912,11 +909,13 @@ namespace MountainGuide.Data.Migrations
 
                     b.Navigation("Coordinate");
 
+                    b.Navigation("Manager");
+
                     b.Navigation("Mountain");
 
                     b.Navigation("TouristAssociation");
 
-                    b.Navigation("TouristBuildingType");
+                    b.Navigation("Type");
                 });
 
             modelBuilder.Entity("MountainGuide.Infrastructure.Data.Models.Comment", b =>
@@ -947,8 +946,6 @@ namespace MountainGuide.Data.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Images");
-
-                    b.Navigation("Likes");
 
                     b.Navigation("TouristBuildings");
                 });

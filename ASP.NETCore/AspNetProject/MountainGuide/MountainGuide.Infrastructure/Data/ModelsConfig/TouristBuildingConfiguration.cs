@@ -9,33 +9,36 @@ namespace MountainGuide.Infrastructure.Data.ModelConfig
         {
             builder
                 .Entity<TouristBuilding>()
-                .HasOne(tb => tb.Type)
+                .HasOne(tb => tb.TouristBuildingType)
                 .WithMany(tt => tt.TouristBuildings)
+                .HasForeignKey(tb => tb.TouristBuildingTypeId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<TouristBuilding>()
                 .HasOne(tb => tb.TouristAssociation)
                 .WithMany(ta => ta.TouristBuildings)
+                .HasForeignKey(tb => tb.TouristAssociationId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<TouristBuilding>()
                 .HasOne(tb => tb.Coordinate)
                 .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey<TouristBuilding>(tb => tb.CoordinateId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .Entity<TouristBuilding>()
                 .HasOne(tb => tb.Mountain)
                 .WithMany(m => m.TouristBuildings)
+                .HasForeignKey(tb => tb.MountainId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<TouristBuilding>()
                 .Property(tb => tb.MountainId)
                 .IsRequired(false);
-
         }
 
     }
