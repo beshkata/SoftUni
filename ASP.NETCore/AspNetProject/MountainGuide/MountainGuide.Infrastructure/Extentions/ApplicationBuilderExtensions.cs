@@ -106,6 +106,7 @@ namespace MountainGuide.Infrastructure.Extentions
                 {
                     new Announcement
                     {
+                        Title = "Spring party",
                         Content = "Kozia Stena hut organizes a spring party on March 22, 2022!",
                         User = user,
                         UserId = user.Id,
@@ -149,6 +150,7 @@ namespace MountainGuide.Infrastructure.Extentions
                 {
                     new Announcement
                     {
+                        Title = "Renovations",
                         Content = "Eho hut will be closed on April 14 due to renovations!",
                         User = user,
                         UserId = user.Id,
@@ -191,6 +193,7 @@ namespace MountainGuide.Infrastructure.Extentions
                 {
                     new Announcement
                     {
+                        Title = "Chess competition",
                         Content = "Pleven hut organizes a chess competition on April 20, 2022!",
                         User = user,
                         UserId = user.Id,

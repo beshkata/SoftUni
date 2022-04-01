@@ -11,6 +11,10 @@ namespace MountainGuide.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(TitleMaxLength)]
+        public string Title { get; set; }
+
+        [Required]
         [StringLength(ContentMaxLength)]
         public string Content { get; set; }
 

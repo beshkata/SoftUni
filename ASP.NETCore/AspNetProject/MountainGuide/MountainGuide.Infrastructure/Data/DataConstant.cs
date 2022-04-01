@@ -79,7 +79,10 @@
 
         public class Announcement
         {
+            public const int TitleMaxLength = 100;
+            public const int TitleMinLength = 5;
             public const int ContentMaxLength = 2000;
+            public const int ContentMinLength = 50;
             public const int UserIdMaxLength = 450;
         }
     }
