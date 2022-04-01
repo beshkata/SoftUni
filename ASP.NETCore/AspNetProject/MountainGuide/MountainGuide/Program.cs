@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MountainGuide.Core.Services.Announcement;
 using MountainGuide.Core.Services.Contracts;
 using MountainGuide.Core.Services.Home;
 using MountainGuide.Infrastructure.Data;
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<MountainGuideDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddTransient<IHomeService, HomeService>();
+builder.Services.AddTransient<IAnnouncementService, AnnouncementService>();
 
 builder.Services.AddDefaultIdentity<User>(options =>
 {

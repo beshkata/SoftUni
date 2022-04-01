@@ -1,0 +1,26 @@
+﻿@using MountainGuide.Core.Services.Announcement.Models
+@model List<AnnouncementAllServiceModel>
+
+@{
+    ViewBag.Title = "All Announcements";
+}
+
+<div class="row justify-content-center gx-5 ">
+    @if (Model == null)
+    {
+        <div class="text-center">
+            <h2>Sorry! Announcement's list is empty.</h2>
+        </div>
+    }
+    @foreach (var ads in Model)
+    {
+        <div class="card col-md-6 m-4 p-1 rounded-2 shadow" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@ads.Title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@ads.PublishingOrganizationName<br/>@ads.DateAdded</h6>
+                <p class="card-text">@ads.Content</p>
+                <a asp-controller="Announcement" asp-action="Details" asp-route-id="@ads.Id" class="card-link">Details</a>
+            </div>
+        </div>
+    }
+</div>
