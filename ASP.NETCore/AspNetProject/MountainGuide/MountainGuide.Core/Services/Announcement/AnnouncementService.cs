@@ -14,13 +14,33 @@ namespace MountainGuide.Core.Services.Announcement
             this.data = data;
         }
 
-        public List<AnnouncementAllServiceModel> GetAllAnnouncements()
+        public AllAnnouncementServiceQueryModel GetAllAnnouncements(
+            int currentPage = 1,
+            int announcementsPerPage = 3)
         {
-            var all = data
-                .Announcements
+            var announcementQuery = data.Announcements
                 .Include(a => a.TouristBuilding)
                 .ThenInclude(tb => tb.TouristBuildingType)
-                .Include(a => a.TouristAssociation)
+                .Include(a => a.TouristAssociation).AsQueryable();
+
+            int totalAnnouncements = announcementQuery.Count();
+
+            var announcements = GetAnnouncements(announcementQuery
+                .Skip((currentPage - 1) * announcementsPerPage)
+                .Take(announcementsPerPage));
+
+            return new AllAnnouncementServiceQueryModel
+            {
+                Announcements = announcements,
+                TotalAnnouncements = totalAnnouncements,
+                CurrentPage = currentPage,
+                AnnouncementPerPage = announcementsPerPage
+            };
+        }
+
+        private IEnumerable<AnnouncementAllServiceModel> GetAnnouncements(IQueryable<Infrastructure.Data.Models.Announcement> announcementQuery)
+        {
+            return announcementQuery
                 .Select(a => new AnnouncementAllServiceModel
                 {
                     Id = a.Id,
@@ -33,7 +53,6 @@ namespace MountainGuide.Core.Services.Announcement
                         a.TouristBuilding.Name + " " + a.TouristBuilding.TouristBuildingType.Name
                 })
                 .ToList();
-            return all;
         }
     }
 }

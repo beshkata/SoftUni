@@ -4,6 +4,6 @@ namespace MountainGuide.Core.Services.Contracts
 {
     public interface IAnnouncementService
     {
-        List<AnnouncementAllServiceModel> GetAllAnnouncements();
+        AllAnnouncementServiceQueryModel GetAllAnnouncements(int currentPage, int announcementPerPage);
     }
 }

@@ -1,26 +1,57 @@
 ﻿@using MountainGuide.Core.Services.Announcement.Models
-@model List<AnnouncementAllServiceModel>
+
+@model AllAnnouncementServiceQueryModel
 
 @{
     ViewBag.Title = "All Announcements";
 }
 
-<div class="row justify-content-center gx-5 ">
-    @if (Model == null)
+@{
+    var previousPage = Model.CurrentPage - 1;
+    var nextPage = Model.CurrentPage + 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
+
+    var maxPage = Math.Ceiling((double)Model.TotalAnnouncements / 3);
+}
+
+<div class="row justify-content-center gx-5 d-flex align-items-center">
+    <div class="col-1">
+        <a class="btn btn-primary float-sm-start @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+           asp-controller="Announcement"
+           asp-action="All"
+           asp-route-currentPage="@previousPage" )"><<</a>
+    </div>
+
+    @{
+        var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+                !Model.Announcements.Any();
+    }
+
+
+    @if (Model.Announcements == null || Model.Announcements.Count() == 0)
     {
         <div class="text-center">
             <h2>Sorry! Announcement's list is empty.</h2>
         </div>
     }
-    @foreach (var ads in Model)
+    @foreach (var ads in Model.Announcements)
     {
-        <div class="card col-md-6 m-4 p-1 rounded-2 shadow" style="width: 18rem;">
+        <div class="card m-4 p-1 rounded-2 shadow" style="width: 16rem;">
             <div class="card-body">
                 <h5 class="card-title">@ads.Title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">@ads.PublishingOrganizationName<br/>@ads.DateAdded</h6>
-                <p class="card-text">@ads.Content</p>
+                <h6 class="card-subtitle mb-2 text-muted">@ads.PublishingOrganizationName<br />@ads.DateAdded</h6>
+                <p class="card-text">@(string.Concat(ads.Content.Take(50)) + "...")</p>
                 <a asp-controller="Announcement" asp-action="Details" asp-route-id="@ads.Id" class="card-link">Details</a>
             </div>
         </div>
     }
+    <div class="col-1">
+        <a class="btn btn-primary float-sm-end @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
+           asp-controller="Announcement"
+           asp-action="All"
+           asp-route-currentPage="@nextPage" )">>></a>
+    </div>
 </div>

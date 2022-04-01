@@ -17,7 +17,7 @@ namespace MountainGuide.Core.Services.Home
         public List<AnnouncementServiceModel> GetAnnouncementInfo()
             => data
                 .Announcements
-                .OrderByDescending(a => a.Id)
+                .OrderByDescending(a => a.DateTime)
                 .Take(IndexModelListCount)
                 .Select(a => new AnnouncementServiceModel
                 {
