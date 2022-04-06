@@ -50,7 +50,9 @@ namespace MountainGuide.Core.Services.Announcement
                     PublishingOrganizationName =
                         a.TouristAssociation.Name != null ?
                         a.TouristAssociation.Name :
-                        a.TouristBuilding.Name + " " + a.TouristBuilding.TouristBuildingType.Name
+                        a.TouristBuilding.Name + " " + a.TouristBuilding.TouristBuildingType.Name,
+                    LikesCount = a.Likes.Count(),
+                    CommentsCount = a.Comments.Count()
                 })
                 .ToList();
         }

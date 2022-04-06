@@ -13,5 +13,8 @@ namespace MountainGuide.Core.Services.Announcement.Models
 
         public string PublishingOrganizationName { get; set; }
 
+        public int LikesCount { get; set; }
+
+        public int CommentsCount { get; set; }
     }
 }

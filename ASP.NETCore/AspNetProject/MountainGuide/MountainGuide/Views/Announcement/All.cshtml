@@ -14,7 +14,7 @@
         previousPage = 1;
     }
 
-    var maxPage = Math.Ceiling((double)Model.TotalAnnouncements / 3);
+    var maxPage = Math.Ceiling((double)Model.TotalAnnouncements / ViewConstant.AnnouncementsPerPage);
 }
 
 <div class="row justify-content-center gx-5 d-flex align-items-center">
@@ -43,8 +43,11 @@
             <div class="card-body">
                 <h5 class="card-title">@ads.Title</h5>
                 <h6 class="card-subtitle mb-2 text-muted">@ads.PublishingOrganizationName<br />@ads.DateAdded</h6>
-                <p class="card-text">@(string.Concat(ads.Content.Take(50)) + "...")</p>
-                <a asp-controller="Announcement" asp-action="Details" asp-route-id="@ads.Id" class="card-link">Details</a>
+                <p class="card-text">@(string.Concat(ads.Content.Take(ViewConstant.AnnouncemntContentLettersCount)) + "...")</p>
+                <div>
+                    Likes: @ads.LikesCount Comments: @ads.CommentsCount 
+                    <a asp-controller="Announcement" asp-action="Details" asp-route-id="@ads.Id" class="card-link">Details</a>
+                </div>
             </div>
         </div>
     }

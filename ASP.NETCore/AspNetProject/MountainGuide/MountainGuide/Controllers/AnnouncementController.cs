@@ -15,7 +15,7 @@ namespace MountainGuide.Controllers
         public IActionResult All(int currentPage = 1)
         {
             var queryResult = this.announcementService.GetAllAnnouncements(
-                currentPage, 3);
+                currentPage, ViewConstant.AnnouncementsPerPage);
 
             return View(new AllAnnouncementServiceQueryModel
             {
