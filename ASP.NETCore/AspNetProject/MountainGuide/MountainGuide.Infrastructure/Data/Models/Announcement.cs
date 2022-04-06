@@ -36,5 +36,9 @@ namespace MountainGuide.Infrastructure.Data.Models
         public int? TouristAssociationId { get; set; }
         
         public TouristAssociation TouristAssociation { get; set; }
+
+        public IEnumerable<Like> Likes { get; set; } = new List<Like>();
+
+        public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

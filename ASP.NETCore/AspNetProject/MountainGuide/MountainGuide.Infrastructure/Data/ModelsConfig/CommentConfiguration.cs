@@ -27,11 +27,21 @@ namespace MountainGuide.Infrastructure.Data.ModelConfig
                 .OnDelete(DeleteBehavior.Restrict);
             builder
                 .Entity<Comment>()
+                .HasOne(c => c.Announcement)
+                .WithMany(a => a.Comments)
+                .HasForeignKey(c => c.AnnouncementId)
+                .OnDelete(DeleteBehavior.Restrict);
+            builder
+                .Entity<Comment>()
                 .Property(c => c.TouristAssociationId)
                 .IsRequired(false);
             builder
                 .Entity<Comment>()
                 .Property(c => c.TouristBuildingId)
+                .IsRequired(false);
+            builder
+                .Entity<Comment>()
+                .Property(c => c.AnnouncementId)
                 .IsRequired(false);
         }
 

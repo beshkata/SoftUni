@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MountainGuide.Infrastructure.Data;
 
 #nullable disable
 
-namespace MountainGuide.Data.Migrations
+namespace MountainGuide.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(MountainGuideDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220406192258_AddedLikesToAnnouncement")]
+    partial class AddedLikesToAnnouncement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -361,9 +363,6 @@ namespace MountainGuide.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AnnouncementId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("CommentId")
                         .HasColumnType("int");
 
@@ -385,8 +384,6 @@ namespace MountainGuide.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AnnouncementId");
 
                     b.HasIndex("CommentId");
 
@@ -797,11 +794,6 @@ namespace MountainGuide.Data.Migrations
 
             modelBuilder.Entity("MountainGuide.Infrastructure.Data.Models.Comment", b =>
                 {
-                    b.HasOne("MountainGuide.Infrastructure.Data.Models.Announcement", "Announcement")
-                        .WithMany("Comments")
-                        .HasForeignKey("AnnouncementId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("MountainGuide.Infrastructure.Data.Models.Comment", null)
                         .WithMany("Comments")
                         .HasForeignKey("CommentId");
@@ -821,8 +813,6 @@ namespace MountainGuide.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Announcement");
 
                     b.Navigation("TouristAssociation");
 
@@ -950,8 +940,6 @@ namespace MountainGuide.Data.Migrations
 
             modelBuilder.Entity("MountainGuide.Infrastructure.Data.Models.Announcement", b =>
                 {
-                    b.Navigation("Comments");
-
                     b.Navigation("Likes");
                 });
 

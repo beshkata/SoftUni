@@ -31,5 +31,11 @@ namespace MountainGuide.Infrastructure.Data.Models
 
         public Comment Comment { get; set; }
 
+        [ForeignKey(nameof(Announcement))]
+        public int? AnnouncementId { get; set; }
+
+        public Announcement Announcement { get; set; }
+
+
     }
 }

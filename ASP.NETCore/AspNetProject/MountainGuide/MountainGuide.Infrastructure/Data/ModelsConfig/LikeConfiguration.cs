@@ -31,6 +31,12 @@ namespace MountainGuide.Infrastructure.Data.ModelConfig
                 .WithMany(c => c.Likes)
                 .HasForeignKey(l => l.CommentId)
                 .OnDelete(DeleteBehavior.Restrict);
+            builder
+                .Entity<Like>()
+                .HasOne(l => l.Announcement)
+                .WithMany(a => a.Likes)
+                .HasForeignKey(l => l.AnnouncementId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<Like>()
@@ -43,6 +49,10 @@ namespace MountainGuide.Infrastructure.Data.ModelConfig
             builder
                 .Entity<Like>()
                 .Property(l => l.CommentId)
+                .IsRequired(false);
+            builder
+                .Entity<Like>()
+                .Property(l => l.AnnouncementId)
                 .IsRequired(false);
         }
 
