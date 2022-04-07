@@ -17,18 +17,37 @@
     var maxPage = Math.Ceiling((double)Model.TotalAnnouncements / ViewConstant.AnnouncementsPerPage);
 }
 
-<div class="row justify-content-center gx-5 d-flex align-items-center">
-    <div class="col-1">
-        <a class="btn btn-primary float-sm-start @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
-           asp-controller="Announcement"
-           asp-action="All"
-           asp-route-currentPage="@previousPage" )"><<</a>
-    </div>
 
-    @{
-        var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
-                !Model.Announcements.Any();
-    }
+<div class="row justify-content-center gx-5 d-flex align-items-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : string.Empty)">
+                <a class="page-link btn"
+                   asp-controller="Announcement"
+                   asp-action="All"
+                   asp-route-currentPage="@previousPage">Previous</a>
+            </li>
+            @for (int i = 1; i <= maxPage; i++)
+            {
+            <li class="page-item">
+                <a class="page-link btn"
+                   asp-controller="Announcement"
+                   asp-action="All"
+                   asp-route-currentPage="@i">@i</a>
+            </li>
+            }
+            @{
+            var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+            !Model.Announcements.Any();
+            }
+            <li class="page-item @(shouldButtonBeDisabled ? "disabled" : string.Empty)">
+                <a class="page-link btn"
+                   asp-controller="Announcement"
+                   asp-action="All"
+                   asp-route-currentPage="@nextPage">Next</a>
+            </li>
+        </ul>
+    </nav>
 
 
     @if (Model.Announcements == null || Model.Announcements.Count() == 0)
@@ -45,16 +64,10 @@
                 <h6 class="card-subtitle mb-2 text-muted">@ads.PublishingOrganizationName<br />@ads.DateAdded</h6>
                 <p class="card-text">@(string.Concat(ads.Content.Take(ViewConstant.AnnouncemntContentLettersCount)) + "...")</p>
                 <div>
-                    Likes: @ads.LikesCount Comments: @ads.CommentsCount 
+                    Likes: @ads.LikesCount Comments: @ads.CommentsCount
                     <a asp-controller="Announcement" asp-action="Details" asp-route-id="@ads.Id" class="card-link">Details</a>
                 </div>
             </div>
         </div>
     }
-    <div class="col-1">
-        <a class="btn btn-primary float-sm-end @(shouldButtonBeDisabled ? "disabled" : string.Empty)" style="margin-top: 10px"
-           asp-controller="Announcement"
-           asp-action="All"
-           asp-route-currentPage="@nextPage" )">>></a>
-    </div>
 </div>

@@ -15,23 +15,23 @@ namespace MountainGuide.Infrastructure.Extentions
             using var serviceScope = app.ApplicationServices.CreateScope();
             var services = serviceScope.ServiceProvider;
 
-            await MigrateDatabase(services);
+            //await MigrateDatabase(services);
 
-            await SeedUsers(services);
+            //await SeedUsers(services);
 
-            await SeedTouristBuildingType(services);
+            //await SeedTouristBuildingType(services);
 
-            await SeedMountain(services);
+            //await SeedMountain(services);
 
-            await SeedPeak(services);
+            //await SeedPeak(services);
 
-            await SeedTouristAssociation(services);
+            //await SeedTouristAssociation(services);
 
-            await SeedTouristBuildingWithCoordinates(services);
+            //await SeedTouristBuildingWithCoordinates(services);
 
-            await SeedImages(services);
+            //await SeedImages(services);
 
-            await SeedCommentsAndAnnouncements(services);
+            //await SeedCommentsAndAnnouncements(services);
 
             return app;
         }
