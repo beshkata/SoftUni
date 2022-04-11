@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MountainGuide.Core.Services.Announcement;
+using MountainGuide.Core.Services.Comment;
 using MountainGuide.Core.Services.Contracts;
 using MountainGuide.Core.Services.Home;
 using MountainGuide.Infrastructure.Data;
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<MountainGuideDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddTransient<IHomeService, HomeService>();
 builder.Services.AddTransient<IAnnouncementService, AnnouncementService>();
+builder.Services.AddTransient<ICommentService, CommentService>();
 
 builder.Services.AddDefaultIdentity<User>(options =>
 {
@@ -28,7 +30,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-await app.PrepareDatabase();
+//await app.PrepareDatabase();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

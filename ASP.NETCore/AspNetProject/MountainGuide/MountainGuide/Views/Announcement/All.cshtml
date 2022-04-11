@@ -17,6 +17,9 @@
     var maxPage = Math.Ceiling((double)Model.TotalAnnouncements / ViewConstant.AnnouncementsPerPage);
 }
 
+<div class="text-center">
+    <h2>Announcements:</h2>
+</div>
 
 <div class="row justify-content-center gx-5 d-flex align-items-center">
     <nav aria-label="Page navigation example">
@@ -29,16 +32,16 @@
             </li>
             @for (int i = 1; i <= maxPage; i++)
             {
-            <li class="page-item">
-                <a class="page-link btn"
+                    <li class="page-item">
+                        <a class="page-link btn"
                    asp-controller="Announcement"
                    asp-action="All"
                    asp-route-currentPage="@i">@i</a>
-            </li>
+                    </li>
             }
             @{
-            var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
-            !Model.Announcements.Any();
+                    var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+                    !Model.Announcements.Any();
             }
             <li class="page-item @(shouldButtonBeDisabled ? "disabled" : string.Empty)">
                 <a class="page-link btn"
@@ -52,22 +55,22 @@
 
     @if (Model.Announcements == null || Model.Announcements.Count() == 0)
     {
-        <div class="text-center">
-            <h2>Sorry! Announcement's list is empty.</h2>
-        </div>
+                <div class="text-center">
+                    <h2>Sorry! Announcement's list is empty.</h2>
+                </div>
     }
     @foreach (var ads in Model.Announcements)
     {
-        <div class="card m-4 p-1 rounded-2 shadow" style="width: 16rem;">
-            <div class="card-body">
-                <h5 class="card-title">@ads.Title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">@ads.PublishingOrganizationName<br />@ads.DateAdded</h6>
-                <p class="card-text">@(string.Concat(ads.Content.Take(ViewConstant.AnnouncemntContentLettersCount)) + "...")</p>
-                <div>
-                    Likes: @ads.LikesCount Comments: @ads.CommentsCount
-                    <a asp-controller="Announcement" asp-action="Details" asp-route-id="@ads.Id" class="card-link">Details</a>
+                <div class="card m-4 p-1 rounded-2 shadow" style="width: 16rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">@ads.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@ads.PublishingOrganizationName<br />@ads.DateAdded</h6>
+                        <p class="card-text">@(string.Concat(ads.Content.Take(ViewConstant.AnnouncemntContentLettersCount)) + "...")</p>
+                        <div>
+                            Likes: @ads.LikesCount Comments: @ads.CommentsCount
+                            <a asp-controller="Announcement" asp-action="Details" asp-route-id="@ads.Id" class="card-link">Details</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
     }
 </div>

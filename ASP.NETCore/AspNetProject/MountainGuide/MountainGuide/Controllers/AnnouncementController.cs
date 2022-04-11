@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MountainGuide.Core.Services.Announcement.Models;
 using MountainGuide.Core.Services.Contracts;
+using MountainGuide.Models.Announcement;
 
 namespace MountainGuide.Controllers
 {
@@ -22,6 +23,21 @@ namespace MountainGuide.Controllers
                 CurrentPage = currentPage,
                 TotalAnnouncements = queryResult.TotalAnnouncements,
                 Announcements = queryResult.Announcements
+            });
+        }
+
+        public IActionResult Details(int id)
+        {
+            var serviceModel = announcementService.GetAnnouncementDetails(id);
+            
+            if (serviceModel == null)
+            {
+                return NotFound();
+            }
+
+            return View(new AnnouncementDetailsViewModel
+            {
+                Announcement = serviceModel
             });
         }
     }

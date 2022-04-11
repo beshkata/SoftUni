@@ -1,0 +1,67 @@
+﻿@using MountainGuide.Models.Announcement
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@model AnnouncementDetailsViewModel
+@{
+    ViewBag.Title = "Announcement Details";
+}
+<div class="row justify-content-center gx-5 d-flex align-items-center">
+    <div class="card m-4 p-1 rounded-2 shadow" style="width: 35rem;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Announcement.Title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@Model.Announcement.PublishingOrganizationName<br />@Model.Announcement.DateTimeAdded</h6>
+            <p class="card-text">@Model.Announcement.Content</p>
+            <div class="align-middle fst-italic float-end">
+                <i class="fa-solid fa-thumbs-up text-info"> @Model.Announcement.LikesCount</i>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if(!Model.Announcement.Comments.Any())
+{
+    <p class="text-center">There are no comments for this аnnouncement yet.</p>
+}
+else
+{
+<div class="row justify-content-center gx-1 d-flex align-items-center">
+    <h6 class="text-center">Comments:</h6>
+    <div class="card m-4 p-1 rounded-2 shadow" style="width: 35rem;">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                @foreach (var comm in @Model.Announcement.Comments)
+                {
+                    <li class="list-group-item">
+                        <p class="text-info">@comm.UserName <span class="text-secondary">@comm.DateTimeAdded</span></p>
+                        <p class="card-text">@comm.Content</p>
+                        <div class="align-middle fst-italic float-end">
+                            <i class="fa-solid fa-thumbs-up text-info"> @comm.LikesCount</i>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+}
+<div class="row justify-content-center gx-1 d-flex align-items-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <p class="text-center">Add comment:</p>
+        <div class="card m-4 p-1 rounded-2 shadow" style="width: 35rem;">
+            <form method="post">
+                <div class="form-group">
+                    <textarea asp-for="AddCommentContent" rows="4" class="form-control" placeholder="Add your comment here..."></textarea>
+                    <span asp-validation-for="AddCommentContent" class="small text-danger"></span>
+                </div>
+                <input asp-for="Announcement.Id" value="@Model.Announcement.Id" type ="hidden" class="form-control">
+                <input asp-controller="Comment" asp-action="AddCommentToAnnouncement" class="btn btn-primary mt-3 float-end" type="submit" value="Add" />
+            </form>
+        </div>
+    }
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MountainGuide.Core.Services.Announcement.Models;
+using MountainGuide.Core.Services.Comment.Models;
 using MountainGuide.Core.Services.Contracts;
 using MountainGuide.Infrastructure.Data;
 
@@ -36,6 +37,42 @@ namespace MountainGuide.Core.Services.Announcement
                 CurrentPage = currentPage,
                 AnnouncementPerPage = announcementsPerPage
             };
+        }
+
+        public AnnouncementDetailsServiceModel GetAnnouncementDetails(int id)
+        {
+            var announcement = data
+                .Announcements
+                .Where(a => a.Id == id)
+                .Include(a => a.TouristBuilding)
+                .ThenInclude(tb => tb.TouristBuildingType)
+                .Include(a => a.TouristAssociation)
+                .Include(a => a.Comments)
+                .ThenInclude(c => c.User)
+                .Select(a => new AnnouncementDetailsServiceModel
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    Content = a.Content,
+                    PublishingOrganizationName =
+                        a.TouristAssociation.Name != null ?
+                        a.TouristAssociation.Name :
+                        a.TouristBuilding.Name + " " + a.TouristBuilding.TouristBuildingType.Name,
+                    DateTimeAdded = a.DateTime.ToString("g"),
+                    TouristBuildingId = a.TouristBuildingId,
+                    TouristAssociationId = a.TouristAssociationId,
+                    LikesCount = a.Likes.Count(),
+                    Comments = a.Comments.Select(c => new CommentServiceModel
+                    {
+                        Id = c.Id,
+                        Content = c.Content,
+                        UserName = c.User.UserName,
+                        DateTimeAdded = c.DateTime.ToString("g"),
+                        LikesCount = c.Likes.Count()
+                    })
+                })
+                .FirstOrDefault();
+            return announcement;
         }
 
         private IEnumerable<AnnouncementAllServiceModel> GetAnnouncements(IQueryable<Infrastructure.Data.Models.Announcement> announcementQuery)
