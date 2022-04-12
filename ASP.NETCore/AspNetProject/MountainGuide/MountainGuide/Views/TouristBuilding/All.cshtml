@@ -1,0 +1,113 @@
+﻿@using MountainGuide.Models.TouristBuilding
+
+@model AllTouristBuildingViewModel
+
+@{
+    ViewBag.Title = "Tourist Buildings";
+}
+
+@{
+    var previousPage = Model.CurrentPage - 1;
+    var nextPage = Model.CurrentPage + 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
+
+    var maxPage = Math.Ceiling((double)Model.TotalBuildings / ViewConstant.AnnouncementsPerPage);
+}
+
+<div class="text-center">
+    <h2>Tourist Builbings:</h2>
+</div>
+<div class="row justify-content-center m-2 gx-5 d-flex align-items-center">
+    <form method="get" class="row row-cols-1 row-cols-md-3 g-4 align-items-center">
+        <div class="col">
+            <label asp-for="TypeFilter"></label>
+            <select asp-for="TypeFilter" class="form-select" aria-label="Default select example" style="width: 18rem;">
+                <option value="0">All</option>
+                @foreach (var type in Model.BuildingTypes)
+                {
+                    <option value="@type.Id">@type.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col">
+            <label asp-for="MountainFilter"></label>
+            <select asp-for="MountainFilter" class="form-select" aria-label="Default select example" style="width: 18rem;">
+                <option value="0">All</option>
+                @foreach (var mountain in Model.Mountains)
+                {
+                    <option value="@mountain.Id">@mountain.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col">
+            <button class="btn btn-secondary" type="submit">
+                Search
+            </button>
+        </div>
+    </form>
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <li class="page-item @(Model.CurrentPage == 1 ? " disabled" : string.Empty)">
+            <a class="page-link btn"
+               asp-controller="TouristBuilding"
+               asp-action="All"
+               asp-route-currentPage="@previousPage"
+               asp-route-typeFilter="@Model.TypeFilter"
+               asp-route-mountainFilter="@Model.MountainFilter">Previous</a>
+        </li>
+        @for (int i = 1; i <= maxPage; i++)
+        {
+            <li class="page-item">
+                <a class="page-link btn"
+               asp-controller="TouristBuilding"
+               asp-action="All"
+               asp-route-currentPage="@i"
+               asp-route-typeFilter="@Model.TypeFilter"
+               asp-route-mountainFilter="@Model.MountainFilter">@i</a>
+            </li>
+        }
+        @{
+            var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+                !Model.Buildings.Any();
+        }
+
+        <li class="page-item @(shouldButtonBeDisabled ? " disabled" : string.Empty)">
+            <a class="page-link btn"
+               asp-controller="TouristBuilding"
+               asp-action="All"
+               asp-route-currentPage="@nextPage"
+               asp-route-typeFilter="@Model.TypeFilter"
+               asp-route-mountainFilter="@Model.MountainFilter">Next</a>
+        </li>
+    </ul>
+</nav>
+@if (!Model.Buildings.Any())
+{
+    <h2 class="text-center">No buildings found by the given criteria!</h2>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var building in Model.Buildings)
+        {
+        <div class="col">
+            <div class="card h-100 rounded-2 shadow">
+                <img src="@building.FrontImageUrl" class="card-img-top" alt="@building.Name @building.MountainName">
+                <div class="card-body">
+                    <h5 class="card-title">@building.Name @Model.BuildingTypes.Where(t => t.Id == building.TouristBuildingTypeId).First().Name</h5>
+                    <p class="card-text">@building.Description</p>
+                </div>
+                <div class="card-footer">
+                    Announcements: @building.AnnouncementsCount Likes: @building.LikesCount Comments: @building.CommentsCount
+                    <a asp-controller="TouristBuilding" asp-action="Details" asp-route-id="@building.Id" class="card-link">Details</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+}

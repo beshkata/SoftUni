@@ -3,6 +3,7 @@ using MountainGuide.Core.Services.Announcement;
 using MountainGuide.Core.Services.Comment;
 using MountainGuide.Core.Services.Contracts;
 using MountainGuide.Core.Services.Home;
+using MountainGuide.Core.Services.TouristBuilding;
 using MountainGuide.Infrastructure.Data;
 using MountainGuide.Infrastructure.Data.Models;
 using MountainGuide.Infrastructure.Extentions;
@@ -17,6 +18,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddTransient<IHomeService, HomeService>();
 builder.Services.AddTransient<IAnnouncementService, AnnouncementService>();
 builder.Services.AddTransient<ICommentService, CommentService>();
+builder.Services.AddTransient<ITouristBuildingService, TouristBuildingService>();
 
 builder.Services.AddDefaultIdentity<User>(options =>
 {

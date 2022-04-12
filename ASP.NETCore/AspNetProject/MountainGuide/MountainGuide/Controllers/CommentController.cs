@@ -33,10 +33,6 @@ namespace MountainGuide.Controllers
                 return Redirect("/Identity/Account/Login");
             }
 
-            //if (!ModelState.IsValid)
-            //{
-            //    return Redirect($"/Announcement/Details/{model.Announcement.Id}");
-            //}
             commentService.AddCommentToAnnouncement(model.Announcement.Id, model.AddCommentContent, userManager.GetUserId(User));
 
             return Redirect($"/Announcement/Details/{model.Announcement.Id}");
