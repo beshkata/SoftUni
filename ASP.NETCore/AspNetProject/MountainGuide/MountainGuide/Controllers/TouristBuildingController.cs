@@ -28,5 +28,10 @@ namespace MountainGuide.Controllers
 
             return View(model);
         }
+
+        public IActionResult Details(int id)
+        {
+            return View();
+        }
     }
 }

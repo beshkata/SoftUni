@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Tourist Building Details";
+}
+
+<div class="row justify-content-center gx-5 d-flex align-items-center">
+    <div class="card m-4 p-1 rounded-2 shadow" style="width: 40rem;">
+        <div class="card-body">
+            <h5 class="card-title">Pleven Hut</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Stara planina</h6>
+            <p class="card-text">Pleven hut is located in the Middle Stara Planina, at the northern foot of Botev peak, in the area of Bazov Dyal, above Vidima quarter (town of Apriltsi).</p>
+            <p>Altitude: 1504</p>
+            <p>Capacity: 180</p>
+            <p>Phone number: 0988 777701</p>
+            <p>Coordinate: 42.74960, 24.89571</p>
+            <p>Tourist Association: Kailashka Dolina - Pleven</p>
+            <div class="align-middle fst-italic float-end">
+                Announcements: 1 Comments: 2
+                <i class="fa-solid fa-thumbs-up text-info"> 10</i>
+            </div>
+        </div>
+    </div>
+</div>
+<h6 class="text-center">Location</h6>
+<div class="row justify-content-center gx-5 d-flex align-items-center">
+    <div class="card m-4 p-1 rounded-2 shadow" style="width: 40rem;">
+        <div id="map" style="height: 39.5rem; width: 39.5rem;"></div>
+    </div>
+</div>
+<h6 class="text-center">Images</h6>
+
+<div class="row justify-content-center gx-1 d-flex align-items-center">
+    <div class="galleria">
+    <a class="col-md-4 mt-1" href="https://www.btsbg.org/sites/default/files/hiji/Hija_Pleven.gif">
+        <img src="https://www.btsbg.org/sites/default/files/hiji/Hija_Pleven.gif" class="img-thumbnail" style="width: 18rem;" alt=" Picture">
+    </a>
+    <a class="col-md-4 mt-1" href="https://tripsjournal.com/wp-content/uploads/2016/09/hija-pleven-otpred.jpg">
+        <img src="https://tripsjournal.com/wp-content/uploads/2016/09/hija-pleven-otpred.jpg" class="img-thumbnail" style="width: 18rem;" alt=" Picture">
+    </a>
+    <a class="col-md-4 mt-1" href="https://tripsjournal.com/wp-content/uploads/2016/09/hija-pleven.jpg">
+        <img src="https://tripsjournal.com/wp-content/uploads/2016/09/hija-pleven.jpg" class="img-thumbnail" style="width: 18rem;" alt=" Picture">
+    </a>
+    </div>
+</div>
+<h6 class="text-center">Announcements</h6>
+<div class="row justify-content-center gx-1 d-flex align-items-center">
+    <div class="card m-4 p-1 rounded-2 shadow" style="width: 35rem;">
+        <div class="card-body">
+            <h5 class="card-title">Chess competition</h5>
+            <h6 class="card-subtitle mb-2 text-muted">2022-03-31 08:48</h6>
+            <p class="card-text">Pleven hut organizes a chess competition on April 20, 2022!</p>
+            <div class="align-middle fst-italic float-end">
+                <i class="fa-solid fa-thumbs-up text-info"> 3</i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center gx-1 d-flex align-items-center">
+    <h6 class="text-center">Comments:</h6>
+    <div class="card m-4 p-1 rounded-2 shadow" style="width: 35rem;">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <p class="text-info">PetarPetrov <span class="text-secondary">2022-03-31 08:02</span></p>
+                    <p class="card-text">I Love Pleven hut</p>
+                    <div class="align-middle fst-italic float-end">
+                        <i class="fa-solid fa-thumbs-up text-info"> 2</i>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <p class="text-info">PetarPetrov <span class="text-secondary">2022-03-31 08:02</span></p>
+                    <p class="card-text">Pleven i a Great hut</p>
+                    <div class="align-middle fst-italic float-end">
+                        <i class="fa-solid fa-thumbs-up text-info"> 2</i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+@section Scripts {
+<script>
+    map("42.74960", "24.89571")
+</script>
+<script>
+    (function() {
+        Galleria.loadTheme('https://cdnjs.cloudflare.com/ajax/libs/galleria/1.6.1/themes/classic/galleria.classic.min.js');
+        Galleria.run('.galleria');
+    }());
+</script>
+}

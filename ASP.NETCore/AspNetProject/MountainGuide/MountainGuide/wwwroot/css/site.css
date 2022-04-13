@@ -29,3 +29,12 @@ img.gallery {
     border: 1px solid #ccc;
     box-shadow: 10px 10px 10px #999;
 }
+#map {
+    width: 100vw;
+    height: 100vh;
+}
+.galleria {
+    width: 700px;
+    height: 400px;
+    background: #000
+}
