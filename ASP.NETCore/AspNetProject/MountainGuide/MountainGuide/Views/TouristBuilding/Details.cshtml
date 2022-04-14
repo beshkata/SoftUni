@@ -35,7 +35,7 @@
 </div>
 <h6 class="text-center">Gallery</h6>
 
-<div class="row justify-content-center gx-1 d-flex align-items-center">
+<div class="row justify-content-center m-4 gx-5 d-flex align-items-center">
     <div class="galleria">
         @foreach (var img in @Model.TouristBuilding.Images)
         {
@@ -46,7 +46,7 @@
     </div>
 </div>
 <h6 class="text-center">Announcements</h6>
-<div class="row justify-content-center gx-1 d-flex align-items-center">
+<div class="row justify-content-center gx-5 d-flex align-items-center">
     @if (!Model.TouristBuilding.Announcements.Any())
     {
         <p class="text-center">There are no аnnouncement yet.</p>
@@ -68,15 +68,15 @@
         }
     }
 </div>
-<div class="row justify-content-center gx-1 d-flex align-items-center">
+<div class="row justify-content-center gx-5 d-flex align-items-center">
     <h6 class="text-center">Comments:</h6>
-    <div class="card m-4 p-1 rounded-2 shadow" style="width: 35rem;">
-        @if (!Model.TouristBuilding.Comments.Any())
-        {
-            <p class="text-center">There are no comments for this building yet.</p>
-        }
-        else
-        {
+    @if (!Model.TouristBuilding.Comments.Any())
+    {
+        <p class="text-center">There are no comments for this building yet.</p>
+    }
+    else
+    {
+        <div class="card m-4 p-1 rounded-2 shadow" style="width: 35rem;">
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     @foreach (var comm in @Model.TouristBuilding.Comments)
@@ -91,10 +91,10 @@
                     }
                 </ul>
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>
-<div class="row justify-content-center gx-1 d-flex align-items-center">
+<div class="row justify-content-center gx-5 d-flex align-items-center">
     @if (SignInManager.IsSignedIn(User))
     {
         <p class="text-center">Add comment:</p>

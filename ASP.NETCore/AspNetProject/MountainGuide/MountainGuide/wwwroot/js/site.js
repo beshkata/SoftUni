@@ -5,7 +5,7 @@
 function map(latitude, longitude) {
     const map = L.map('map', {
         center: [latitude, longitude],
-        zoom: 10
+        zoom: 15
     });
 
     const basemaps = {
