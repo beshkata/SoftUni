@@ -13,5 +13,6 @@ namespace MountainGuide.Core.Services.Contracts
         List<TouristBuildingTypeServiceModel> GetAllBuildingTypes();
 
         int GetAllBuildingsCount(int typeFilter, int mountainFilter);
+        TouristBuildingDetailsServiceModel GetBuildingDetails(int id);
     }
 }

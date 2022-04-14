@@ -23,5 +23,18 @@ namespace MountainGuide.Core.Services.Comment
             data.Comments.Add(comment);
             data.SaveChanges();
         }
+
+        public void AddCommentToTouristBuilding(int id, string commentContent, string userId)
+        {
+            var comment = new Infrastructure.Data.Models.Comment
+            {
+                TouristBuildingId = id,
+                Content = commentContent,
+                UserId = userId
+            };
+            data.Comments.Add(comment);
+            data.SaveChanges();
+
+        }
     }
 }

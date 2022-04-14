@@ -1,4 +1,5 @@
-﻿using MountainGuide.Core.Services.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using MountainGuide.Core.Services.Contracts;
 using MountainGuide.Core.Services.TouristBuilding.Models;
 using MountainGuide.Infrastructure.Data;
 
@@ -76,5 +77,68 @@ namespace MountainGuide.Core.Services.TouristBuilding
                     Name = m.Name
                 })
                 .ToList();
+
+        public TouristBuildingDetailsServiceModel GetBuildingDetails(int id)
+        {
+            var building = data
+                .TouristBuildings
+                .Where(b => b.Id == id)
+                .Include(b => b.Mountain)
+                .Include(b => b.TouristAssociation)
+                .Include(b => b.Images)
+                .Include(b => b.Comments)
+                .ThenInclude(c => c.User)
+                .Include(b => b.Coordinate)
+                .Include(b => b.TouristBuildingType)
+                .Include(b => b.Announcements)
+                .FirstOrDefault();
+
+            if (building == null)
+            {
+                return null;
+            }
+
+            var result = new TouristBuildingDetailsServiceModel
+            {
+                Id = building.Id,
+                Name = building.Name,
+                Altitude = building.Altitude,
+                Description = building.Description,
+                PhoneNumber = building.PhoneNumber,
+                Capacity = building.Capacity,
+                TouristBuildingTypeName = building.TouristBuildingType.Name,
+                TouristAssociationId = building.TouristAssociationId,
+                TouristAssociationName = building.TouristAssociation.Name,
+                Latitude = building.Coordinate.LatitudeValue,
+                Longitude = building.Coordinate.LongitudeValue,
+                LikesCount = building.Likes.Count(),
+                MountainId = building.MountainId,
+                MountainName = building.Mountain.Name,
+                Images = building.Images
+                .Select(i => new Image.ImageServiceModel
+                {
+                    ImageUrl = i.ImageUrl,
+                    Description = i.Description
+                }),
+                Announcements = building.Announcements
+                .Select(a => new Announcement.Models.AnnouncementServiceModel
+                {
+                    Id = a.Id,
+                    Content = a.Content,
+                    DateTimeAdded = a.DateTime.ToString("g"),
+                    LikesCount = a.Likes.Count(),
+                    Title = a.Title
+                }),
+                Comments = building.Comments
+                .Select(c => new Comment.Models.CommentServiceModel
+                {
+                    Content = c.Content,
+                    UserName = c.User.UserName,
+                    DateTimeAdded = c.DateTime.ToString("g"),
+                    LikesCount = c.Likes.Count()
+                })
+            };
+            return result;
+        }
     }
 }

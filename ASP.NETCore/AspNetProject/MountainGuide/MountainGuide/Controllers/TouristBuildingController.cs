@@ -10,8 +10,7 @@ namespace MountainGuide.Controllers
         private readonly ITouristBuildingService buildingService;
 
         public TouristBuildingController(
-            ITouristBuildingService buildingService,
-            IHomeService homeService)
+            ITouristBuildingService buildingService)
         {
             this.buildingService = buildingService;
         }
@@ -31,7 +30,16 @@ namespace MountainGuide.Controllers
 
         public IActionResult Details(int id)
         {
-            return View();
+            var serviceModel = buildingService.GetBuildingDetails(id);
+
+            if (serviceModel == null)
+            {
+                return NotFound();
+            }
+            return View(new TouristBuildingDetailsViewModel
+            {
+                TouristBuilding = serviceModel
+            }); 
         }
     }
 }

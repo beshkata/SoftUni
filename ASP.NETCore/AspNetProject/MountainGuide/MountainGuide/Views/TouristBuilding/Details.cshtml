@@ -1,21 +1,28 @@
-﻿@{
+﻿@using MountainGuide.Models.TouristBuilding
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@model TouristBuildingDetailsViewModel
+@{
     ViewData["Title"] = "Tourist Building Details";
 }
 
 <div class="row justify-content-center gx-5 d-flex align-items-center">
     <div class="card m-4 p-1 rounded-2 shadow" style="width: 40rem;">
         <div class="card-body">
-            <h5 class="card-title">Pleven Hut</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Stara planina</h6>
-            <p class="card-text">Pleven hut is located in the Middle Stara Planina, at the northern foot of Botev peak, in the area of Bazov Dyal, above Vidima quarter (town of Apriltsi).</p>
-            <p>Altitude: 1504</p>
-            <p>Capacity: 180</p>
-            <p>Phone number: 0988 777701</p>
-            <p>Coordinate: 42.74960, 24.89571</p>
-            <p>Tourist Association: Kailashka Dolina - Pleven</p>
+            <h5 class="card-title">@Model.TouristBuilding.Name @Model.TouristBuilding.TouristBuildingTypeName</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                <a asp-controller="Mountain" asp-action="Details" asp-route-id="@Model.TouristBuilding.MountainId">@Model.TouristBuilding.MountainName</a>
+            </h6>
+            <p class="card-text">@Model.TouristBuilding.Description</p>
+            <p>Altitude: @Model.TouristBuilding.Altitude</p>
+            <p>Capacity: @Model.TouristBuilding.Capacity</p>
+            <p>Phone number: @Model.TouristBuilding.PhoneNumber</p>
+            <p>Coordinate: @Model.TouristBuilding.Latitude, @Model.TouristBuilding.Longitude</p>
+            <p>Tourist Association: <a asp-controller="TouristAssociation" asp-action="Details" asp-route-id="@Model.TouristBuilding.TouristAssociationId">@Model.TouristBuilding.TouristAssociationName</a></p>
             <div class="align-middle fst-italic float-end">
-                Announcements: 1 Comments: 2
-                <i class="fa-solid fa-thumbs-up text-info"> 10</i>
+                Announcements: @Model.TouristBuilding.Announcements.Count() Comments: @Model.TouristBuilding.Comments.Count()
+                <i class="fa-solid fa-thumbs-up text-info"> @Model.TouristBuilding.LikesCount</i>
             </div>
         </div>
     </div>
@@ -26,65 +33,92 @@
         <div id="map" style="height: 39.5rem; width: 39.5rem;"></div>
     </div>
 </div>
-<h6 class="text-center">Images</h6>
+<h6 class="text-center">Gallery</h6>
 
 <div class="row justify-content-center gx-1 d-flex align-items-center">
     <div class="galleria">
-    <a href="https://www.btsbg.org/sites/default/files/hiji/Hija_Pleven.gif">
-        <img src="https://www.btsbg.org/sites/default/files/hiji/Hija_Pleven.gif" alt="Pleven Hut">
-    </a>
-    <a href="https://tripsjournal.com/wp-content/uploads/2016/09/hija-pleven-otpred.jpg">
-        <img src="https://tripsjournal.com/wp-content/uploads/2016/09/hija-pleven-otpred.jpg" alt="Pleven Hut">
-    </a>
-    <a href="https://tripsjournal.com/wp-content/uploads/2016/09/hija-pleven.jpg">
-        <img src="https://tripsjournal.com/wp-content/uploads/2016/09/hija-pleven.jpg" alt="Pleven Hut">
-    </a>
+        @foreach (var img in @Model.TouristBuilding.Images)
+        {
+            <a href="@img.ImageUrl">
+                <img src="@img.ImageUrl" alt="@img.Description">
+            </a>
+        }
     </div>
 </div>
 <h6 class="text-center">Announcements</h6>
 <div class="row justify-content-center gx-1 d-flex align-items-center">
-    <div class="card m-4 p-1 rounded-2 shadow" style="width: 35rem;">
-        <div class="card-body">
-            <h5 class="card-title">Chess competition</h5>
-            <h6 class="card-subtitle mb-2 text-muted">2022-03-31 08:48</h6>
-            <p class="card-text">Pleven hut organizes a chess competition on April 20, 2022!</p>
-            <div class="align-middle fst-italic float-end">
-                <i class="fa-solid fa-thumbs-up text-info"> 3</i>
+    @if (!Model.TouristBuilding.Announcements.Any())
+    {
+        <p class="text-center">There are no аnnouncement yet.</p>
+    }
+    else
+    {
+        @foreach (var ad in @Model.TouristBuilding.Announcements)
+        {
+            <div class="card m-4 p-1 rounded-2 shadow" style="width: 35rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><a asp-controller="Announcement" asp-action="Details" asp-route-id="@ad.Id">@ad.Title</a></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@ad.DateTimeAdded</h6>
+                    <p class="card-text">@ad.Content</p>
+                    <div class="align-middle fst-italic float-end">
+                        <i class="fa-solid fa-thumbs-up text-info"> @ad.LikesCount</i>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        }
+    }
 </div>
 <div class="row justify-content-center gx-1 d-flex align-items-center">
     <h6 class="text-center">Comments:</h6>
     <div class="card m-4 p-1 rounded-2 shadow" style="width: 35rem;">
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <p class="text-info">PetarPetrov <span class="text-secondary">2022-03-31 08:02</span></p>
-                    <p class="card-text">I Love Pleven hut</p>
-                    <div class="align-middle fst-italic float-end">
-                        <i class="fa-solid fa-thumbs-up text-info"> 2</i>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <p class="text-info">PetarPetrov <span class="text-secondary">2022-03-31 08:02</span></p>
-                    <p class="card-text">Pleven i a Great hut</p>
-                    <div class="align-middle fst-italic float-end">
-                        <i class="fa-solid fa-thumbs-up text-info"> 2</i>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        @if (!Model.TouristBuilding.Comments.Any())
+        {
+            <p class="text-center">There are no comments for this building yet.</p>
+        }
+        else
+        {
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    @foreach (var comm in @Model.TouristBuilding.Comments)
+                    {
+                        <li class="list-group-item">
+                            <p class="text-info">@comm.UserName <span class="text-secondary">@comm.DateTimeAdded</span></p>
+                            <p class="card-text">@comm.Content</p>
+                            <div class="align-middle fst-italic float-end">
+                                <i class="fa-solid fa-thumbs-up text-info"> @comm.LikesCount</i>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
     </div>
 </div>
+<div class="row justify-content-center gx-1 d-flex align-items-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <p class="text-center">Add comment:</p>
+        <div class="card m-4 p-1 rounded-2 shadow" style="width: 35rem;">
+            <form method="post">
+                <div class="form-group">
+                    <textarea asp-for="AddCommentContent" rows="4" class="form-control" placeholder="Add your comment here..."></textarea>
+                    <span asp-validation-for="AddCommentContent" class="small text-danger"></span>
+                </div>
+                <input asp-for="TouristBuilding.Id" value="@Model.TouristBuilding.Id" type="hidden" class="form-control">
+                <input asp-controller="Comment" asp-action="AddCommentToTouristBuilding" class="btn btn-primary mt-3 float-end" type="submit" value="Add" />
+            </form>
+        </div>
+    }
+</div>
+
 @section Scripts {
 <script>
-    map("42.74960", "24.89571")
+    map(@Model.TouristBuilding.Latitude, @Model.TouristBuilding.Longitude);
 </script>
 <script>
-    (function() {
-        Galleria.loadTheme('https://cdnjs.cloudflare.com/ajax/libs/galleria/1.6.1/themes/twelve/galleria.twelve.min.js');
-        Galleria.run('.galleria');
-    }());
+    galeria();
+</script>
+<script>
+    <partial name="_ValidationScriptsPartial" />
 </script>
 }
