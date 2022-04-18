@@ -32,7 +32,7 @@ namespace MountainGuide.Infrastructure.Data.Models
         public TouristBuildingType TouristBuildingType { get; set; }
 
         [ForeignKey(nameof(TouristAssociation))]
-        public int TouristAssociationId { get; set; }
+        public int? TouristAssociationId { get; set; }
 
         public TouristAssociation TouristAssociation { get; set; }
 

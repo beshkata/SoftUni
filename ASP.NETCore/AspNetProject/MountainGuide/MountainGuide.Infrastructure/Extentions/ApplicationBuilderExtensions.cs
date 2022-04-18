@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿#nullable disable
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,19 +23,182 @@ namespace MountainGuide.Infrastructure.Extentions
 
             await SeedTouristBuildingType(services);
 
-            await SeedMountain(services);
+            await SeedStaraPlanina(services);
 
-            await SeedPeak(services);
+            //await SeedMountain(services);
 
-            await SeedTouristAssociation(services);
+            //await SeedPeak(services);
 
-            await SeedTouristBuildingWithCoordinates(services);
+            //await SeedTouristAssociation(services);
 
-            await SeedImages(services);
+            //await SeedTouristBuildingWithCoordinates(services);
 
-            await SeedCommentsAndAnnouncements(services);
+            //await SeedImages(services);
+
+            //await SeedCommentsAndAnnouncements(services);
 
             return app;
+        }
+
+        private static async Task SeedStaraPlanina(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<MountainGuideDbContext>();
+            if (await data.Mountains.AnyAsync())
+            {
+                return;
+            }
+            var staraPlanina = new Mountain
+            {
+                Name = "Stara planina",
+                Description = "The Balkan mountain range (known locally also as Stara planina) is a mountain range in the eastern part of the Balkan Peninsula in Southeastern Europe. The range is conventionally taken to begin at the peak of Vrashka Chuka on the border between Bulgaria and Serbia. It then runs for about 560 kilometres (350 mi), first in a south-easterly direction along the border, then eastward across Bulgaria, forming a natural barrier between the northern and southern halves of the country, before finally reaching the Black Sea at Cape Emine. The mountains reach their highest point with Botev Peak at 2,376 metres (7,795 ft)."
+            };
+
+        Image[] staraPlaninaImages = new[]
+            {
+                new Image
+                {
+                    Description = "The monument on Shipka",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/4/40/Shipka-monument-bg.jpg"
+                },
+                new Image
+                {
+                    Description = "Central Balkan Mountains",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/8e/Centralbalkan.jpg"
+                },
+                new Image
+                {
+                    Description = "Rosomacka river, Serbia",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Dolina_Rosomacke_reke_07.jpg/800px-Dolina_Rosomacke_reke_07.jpg"
+                },
+                new Image
+                {
+                    Description = "Horses at the Balkan Mountains, Serbia",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Stara_planina14.jpg/1024px-Stara_planina14.jpg"
+                },
+                new Image
+                {
+                    Description = "Kozya Stena Reserve",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/0/03/Kozya-stena-dinev.jpg"
+                },
+                new Image
+                {
+                    Description = "Autumn view of Steneto reserve",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Steneto.jpg/1024px-Steneto.jpg"
+                },
+                new Image
+                {
+                    Description = "The Nature Park Stara Planina",
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Stara_planina10.jpg/1024px-Stara_planina10.jpg"
+                }
+            };
+            await data.Images.AddRangeAsync(staraPlaninaImages);
+            staraPlanina.Images.ToList().AddRange(staraPlaninaImages);
+
+            var botevPeak = new Peak
+            {
+                Name = "Botev",
+                Altitude = 2376,
+                Mountain = staraPlanina,
+                MountainId = staraPlanina.Id,
+                Coordinate = new Coordinate
+                {
+                    Latitude = "42.7175",
+                    Longitude = "24.916667"
+                },
+                Description = @"Botev Peak is, at 2,376 metres (7,795 ft) above sea level, the highest peak of the Balkan Mountains. It is located close to the geographic centre of Bulgaria, and is part of the Central Balkan National Park.
+Until 1950, when it was renamed in honour of Bulgarian poet and revolutionary Hristo Botev, the peak was called Yumrukchal. A weather station and a radio tower(opened on 10 July 1966) that covers 65 % of the country are located on Botev Peak.The average temperature is −8.9 °C(16.0 °F) in January and 7.9 °C(46.2 °F) in July.
+""Botev Peak"" is the main facility of Bulgarian FM and TV broadcasting network.The situation at the top near the geographical center of Bulgaria contribute to national radio broadcasts and television broadcast here to cover more than 65 % throughout the country, also in parts of Romania. The massif is mainly composed of granite rocks dating from the oligocene — a complex of medium acid volcanics — latites, andesites, shoshoneites. 
+The flat ridge relief around Botev and Triglav is isolated with high slopes, which from the north (North Jendem) descend steeply from 2000 – 2200 m down, and from the south (South Jendem) — from 1800 – 1900 m.",
+                Images = new List<Image>
+                {
+                    new Image
+                    {
+                        Description = "Botev Peak from Tuzha hut area",
+                        ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/7/78/Botev_Peak.jpg"
+                    },
+                    new Image
+                    {
+                        Description = "View of Botev Peak from I-6 road (Bulgaria)",
+                        ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Botev_Peak_from_I-6_road.JPG/1024px-Botev_Peak_from_I-6_road.JPG"
+                    },
+                    new Image
+                    {
+                        Description = "The leader of Stara Planina, Botev peak",
+                        ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ad/Botev.jpg"
+                    },
+                    new Image
+                    {
+                        Description = "The meteorological station",
+                        ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Botev-peak-Mincov.jpg/800px-Botev-peak-Mincov.jpg"
+                    },
+                    new Image
+                    {
+                        Description = "View from the foot of Sredna Gora above Kalofer. In front is the Paradise Sprinkler",
+                        ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/0/06/Botev_from_Kalofer.JPG"
+                    }
+                }
+            };
+            await data.Peaks.AddAsync(botevPeak);
+            staraPlanina.Peaks.Append(botevPeak);
+            staraPlanina.Images.ToList().AddRange(botevPeak.Images);
+
+            var vezhenPeak = new Peak
+            {
+                Name = "Vezhen",
+                Altitude = 2198,
+                Mountain = staraPlanina,
+                MountainId = staraPlanina.Id,
+                Coordinate = new Coordinate
+                {
+                    Latitude = "42.755833",
+                    Longitude = "24.354167"
+                },
+                Description = @"Vezhen is a peak in the western Balkan Mountains, located in western Bulgaria. At 2,198 metres (7,211 ft) Vezhen is the 77th highest mountain in Bulgaria. It is situated in the Teteven mountain. Its slopes mark the border of the Tsarichina Reserve. Around the peak's area is located the largest forests of Pinus peuce in the Balkan Mountains.",
+                Images = new List<Image>
+                {
+                    new Image
+                    {
+                        Description = "Vezhen peak",
+                        ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Vejen.jpg/800px-Vejen.jpg"
+                    },
+                    new Image
+                    {
+                        Description = "Tourist at 2,200 m.",
+                        ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Vejen1.jpg/800px-Vejen1.jpg"
+                    }
+                }
+            };
+            staraPlanina.Peaks.Append(vezhenPeak);
+            staraPlanina.Images.ToList().AddRange(vezhenPeak.Images);
+
+            var levskiPeak = new Peak
+            {
+                Name = "Levski",
+                Altitude = 2166,
+                Mountain = staraPlanina,
+                MountainId = staraPlanina.Id,
+                Coordinate = new Coordinate
+                {
+                    Latitude = "42.720278",
+                    Longitude = "24.781389"
+                },
+                Description = @"Levski Peak is a peak in the central Balkan Mountains, in Lovech Province, Bulgaria. It is named after the famous Bulgarian revolutionary Vasil Levski. The peak is 2,166 metres (7,106 ft) high and is situated on the main ridge of the mountain range to the west of Golyam Kupen Peak. The peak is more famous with its old name, Ambaritsa. According to the local legends Krali Marko's granaries were located in the area. The Ambaritsa Refuge is situated on its northern slopes, at 2 hours of the peak.",
+                Images = new List<Image>
+                {
+                    new Image
+                    {
+                        Description = "Levski peak, Cetral Balkan mountains",
+                        ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Levski_peak.jpg/800px-Levski_peak.jpg"
+                    }
+                }
+            };
+            staraPlanina.Peaks.Append(levskiPeak);
+            staraPlanina.Images.ToList().AddRange(levskiPeak.Images);
+
+            await data.Mountains.AddAsync(staraPlanina);
+            await data.Peaks.AddRangeAsync(staraPlanina.Peaks);
+            await data.Images.AddRangeAsync(staraPlanina.Images);
+            await data.SaveChangesAsync();
         }
 
         private static async Task SeedUsers(IServiceProvider services)
@@ -539,8 +704,8 @@ namespace MountainGuide.Infrastructure.Extentions
                     Altitude = 1504.0,
                     Coordinate = new Coordinate
                     {
-                        LatitudeValue = "42.74960",
-                        LongitudeValue = "24.89571"
+                        Latitude = "42.74960",
+                        Longitude = "24.89571"
                     },
                     Capacity = 180,
                     MountainId = staraPlanina.Id,
@@ -562,8 +727,8 @@ namespace MountainGuide.Infrastructure.Extentions
                     Altitude = 1536.0,
                     Coordinate = new Coordinate
                     {
-                        LatitudeValue = "42.785073",
-                        LongitudeValue = "24.529065"
+                        Latitude = "42.785073",
+                        Longitude = "24.529065"
                     },
                     Capacity = 100,
                     MountainId = staraPlanina.Id,
@@ -585,8 +750,8 @@ namespace MountainGuide.Infrastructure.Extentions
                     Altitude = 1645.0,
                     Coordinate = new Coordinate
                     {
-                        LatitudeValue = "42.77500",
-                        LongitudeValue = "24.48128"
+                        Latitude = "42.77500",
+                        Longitude = "24.48128"
                     },
                     Capacity = 40,
                     MountainId = staraPlanina.Id,
@@ -655,8 +820,8 @@ namespace MountainGuide.Infrastructure.Extentions
                     Mountain = rila,
                     Coordinate = new Coordinate
                     {
-                        LatitudeValue = "42.1792",
-                        LongitudeValue = "23.5852"
+                        Latitude = "42.1792",
+                        Longitude = "23.5852"
                     }
                 },
                 new Peak
@@ -667,8 +832,8 @@ namespace MountainGuide.Infrastructure.Extentions
                     Mountain = rila,
                     Coordinate = new Coordinate
                     {
-                        LatitudeValue = "42.1667",
-                        LongitudeValue = "23.3667"
+                        Latitude = "42.1667",
+                        Longitude = "23.3667"
                     }
                 },
                 new Peak
@@ -679,8 +844,8 @@ namespace MountainGuide.Infrastructure.Extentions
                     MountainId = staraPlanina.Id,
                     Coordinate = new Coordinate
                     {
-                        LatitudeValue = "42.7175",
-                        LongitudeValue = "24.9167"
+                        Latitude = "42.7175",
+                        Longitude = "24.9167"
                     }
                 },
                 new Peak
@@ -691,8 +856,8 @@ namespace MountainGuide.Infrastructure.Extentions
                     MountainId = staraPlanina.Id,
                     Coordinate = new Coordinate
                     {
-                        LatitudeValue = "42.7500",
-                        LongitudeValue = "24.4000"
+                        Latitude = "42.7500",
+                        Longitude = "24.4000"
                     }
                 }
             });

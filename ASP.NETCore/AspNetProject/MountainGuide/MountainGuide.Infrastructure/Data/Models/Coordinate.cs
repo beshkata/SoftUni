@@ -1,6 +1,5 @@
 ﻿#nullable disable
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MountainGuide.Infrastructure.Data.Models
 {
@@ -12,20 +11,12 @@ namespace MountainGuide.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(LatitudeTypeLength)]
-        public string LatitudeType { get; init; } = "North";
+        [StringLength(ValueMaxLength)]
+        public string Latitude { get; set; }
 
         [Required]
         [StringLength(ValueMaxLength)]
-        public string LatitudeValue { get; set; }
-
-        [Required]
-        [StringLength(LongitudeTypeLength)]
-        public string LongitudeType { get; init; } = "East";
-
-        [Required]
-        [StringLength(ValueMaxLength)]
-        public string LongitudeValue { get; set; }
+        public string Longitude { get; set; }
 
     }
 }

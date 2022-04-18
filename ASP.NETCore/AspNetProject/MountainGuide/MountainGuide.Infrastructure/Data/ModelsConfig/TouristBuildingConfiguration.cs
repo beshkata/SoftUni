@@ -39,7 +39,11 @@ namespace MountainGuide.Infrastructure.Data.ModelConfig
                 .Entity<TouristBuilding>()
                 .Property(tb => tb.MountainId)
                 .IsRequired(false);
+            
+            builder
+                .Entity<TouristBuilding>()
+                .Property(tb => tb.TouristAssociationId)
+                .IsRequired(false);
         }
-
     }
 }

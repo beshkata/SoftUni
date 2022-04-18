@@ -21,7 +21,7 @@ namespace MountainGuide.Core.Services.TouristBuilding.Models
 
         public string TouristBuildingTypeName { get; set; }
 
-        public int TouristAssociationId { get; set; }
+        public int? TouristAssociationId { get; set; }
 
         public string TouristAssociationName { get; set; }
 

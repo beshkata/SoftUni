@@ -37,9 +37,7 @@
 
         public class Coordinate
         {
-            public const int LatitudeTypeLength = 5;
-            public const int LongitudeTypeLength = 4;
-            public const int ValueMaxLength = 11;
+            public const int ValueMaxLength = 13;
         }
 
         public class TouristAssociation
